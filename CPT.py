@@ -3,7 +3,7 @@
 Name: CPT.py
 
 Purpose: Interactive mini-games that test the user's computer knowledge on course content
-testing
+owa owa
 Author: Yeh.A
 Created: 28/03/2021 
 ----------------------------------------------------------------------------------------------
