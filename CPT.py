@@ -3,7 +3,7 @@
 Name: CPT.py
 
 Purpose: Interactive mini-games that test the user's computer knowledge on course content
-owa owa
+
 Author: Yeh.A
 Created: 28/03/2021 
 ----------------------------------------------------------------------------------------------
@@ -43,10 +43,19 @@ note.set_colorkey(white)
 notepad_image = pygame.transform.scale(note, [220, 200])
 antivirus = pygame.image.load("antivirus.png").convert()
 antivirus.set_colorkey(white)
-antivirus_image = pygame.transform.scale(antivirus, [100, 110])
+antivirus_image = pygame.transform.scale(antivirus, [90, 100])
 CPU = pygame.image.load("CPU.png").convert()
 CPU.set_colorkey(white)
-CPU_image = pygame.transform.scale(CPU, [95, 110])
+CPU_image = pygame.transform.scale(CPU, [80, 90])
+motherboard = pygame.image.load("motherboard.jpeg").convert()
+motherboard.set_colorkey(white)
+motherboard_image = pygame.transform.scale(motherboard, [100, 90])
+RAM = pygame.image.load("RAM.png").convert()
+RAM.set_colorkey(white)
+RAM_image = pygame.transform.scale(RAM, [110, 100])
+graphics = pygame.image.load("graphicscard.png").convert()
+graphics.set_colorkey(white)
+graphics_image = pygame.transform.scale(graphics, [110, 90])
 
 # Set positions
 custom_x = 130
@@ -150,8 +159,11 @@ while not done:
     if scene == 3:
         screen.fill(grey)
         screen.blit(notepad_image, [575, 385])
-        screen.blit(antivirus_image, [300, 200])
-        screen.blit(CPU_image, [180, 200])
+        screen.blit(CPU_image, [180, 90])
+        screen.blit(antivirus_image, [280, 90])
+        screen.blit(motherboard_image, [370, 90])
+        screen.blit(RAM_image, [470, 90])
+        screen.blit(graphics_image, [580, 95])
 
     # --- Drawing code 
     if scene == 0:
