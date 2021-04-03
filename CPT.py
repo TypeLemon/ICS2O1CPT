@@ -56,6 +56,21 @@ RAM_image = pygame.transform.scale(RAM, [110, 100])
 graphics = pygame.image.load("graphicscard.png").convert()
 graphics.set_colorkey(white)
 graphics_image = pygame.transform.scale(graphics, [110, 90])
+keyboard = pygame.image.load("keyboard.png").convert()
+keyboard.set_colorkey(white)
+keyboard_image = pygame.transform.scale(keyboard, [120, 80])
+hard_drive = pygame.image.load("harddrive.jpeg").convert()
+hard_drive.set_colorkey(white)
+hard_drive_image = pygame.transform.scale(hard_drive, [100, 100])
+power_supply = pygame.image.load("powersupply.png").convert()
+power_supply.set_colorkey(white)
+power_supply_image = pygame.transform.scale(power_supply, [105, 100])
+monitor = pygame.image.load("monitor.jpg").convert()
+monitor.set_colorkey(white)
+monitor_image = pygame.transform.scale(monitor, [110, 90])
+mouse = pygame.image.load("mouse.jpg").convert()
+mouse.set_colorkey(white)
+mouse_image = pygame.transform.scale(mouse, [70, 90])
 
 # Set positions
 custom_x = 130
@@ -164,6 +179,11 @@ while not done:
         screen.blit(motherboard_image, [370, 90])
         screen.blit(RAM_image, [470, 90])
         screen.blit(graphics_image, [580, 95])
+        screen.blit(keyboard_image, [95, 230])
+        screen.blit(hard_drive_image, [230, 225])
+        screen.blit(power_supply_image, [340, 225])
+        screen.blit(monitor_image, [470, 225])
+        screen.blit(mouse_image, [605, 220])
 
     # --- Drawing code 
     if scene == 0:
