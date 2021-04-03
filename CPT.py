@@ -20,7 +20,7 @@ lavender = (203, 155, 242)
 light_green = (153, 199, 135)
 coral = (240, 122, 101)
 grey = (211, 211, 211)
-off_black = (40, 40, 40)
+off_white = (245, 245, 245)
   
 # Set the width and height of the screen [width, height]
 size = (800, 600)
@@ -40,7 +40,7 @@ brain = pygame.image.load("brain.jpeg").convert()
 brain_image = pygame.transform.scale(brain, [210, 145])
 note = pygame.image.load("stickynote.png").convert()
 note.set_colorkey(white)
-notepad_image = pygame.transform.scale(note, [220, 200])
+notepad_image = pygame.transform.scale(note, [250, 230])
 antivirus = pygame.image.load("antivirus.png").convert()
 antivirus.set_colorkey(white)
 antivirus_image = pygame.transform.scale(antivirus, [90, 100])
@@ -72,8 +72,9 @@ mouse = pygame.image.load("mouse.jpg").convert()
 mouse.set_colorkey(white)
 mouse_image = pygame.transform.scale(mouse, [70, 90])
 cart = pygame.image.load("shoppingcart.png").convert()
-cart.set_colorkey(white)
-cart_image = pygame.transform.scale(cart, [70, 90])
+cart.set_colorkey(off_white)
+cart_image = pygame.transform.scale(cart, [305, 256])
+floor_image = pygame.image.load("floor.png").convert()
 
 # Set positions
 custom_x = 130
@@ -151,6 +152,9 @@ while not done:
             print("User quit, go to main menu.")
             scene = 0
 
+   #if scene == 3:
+        
+
     # --- Game logic should go here
 
     # First, clear the screen to white or whatever background colour. 
@@ -158,11 +162,25 @@ while not done:
     
     # Render font and text
     button_font = pygame.font.SysFont("Oswald", 25, False, False)
+    small_font = pygame.foont.SysFont("Alegreya", 15, False, False)
+
     cus_text_1 = button_font.render("Character", True, white)
     cus_text_2 = button_font.render("Customization", True, white)
     trivia_text = button_font.render("Trivia Mini-Game", True, white) 
     shopping_text_1 = button_font.render("Shopping", True, white)
     shopping_text_2 = button_font.render("Mini-Game", True, white)
+    checklist_text = button_font.render("Checklist", True, black)
+
+    CPU_text = small_font.render("CPU", True, black)
+    mouse_text = small_font.render("Mouse", True, black)
+    monitor_text = small_font.render("Monitor", True, black)
+    power_text = small_font.render("Power Supply", True, black)
+    graphics_text = small_font.render("Graphics Card", True, black)
+    RAM_text = small_font.render("RAM", True, black)    
+    keyboard_text = small_font.render("Keyboard", True, black)
+    antivirus_text = small_font.render("Antivirus", True, black)
+    hard_drive_text = small_font.render("Hard Drive", True, black)
+    motherboard_text = small_font.render("Motherboard", True, black)
 
     # Copy images to screen
     if scene == 0:
@@ -176,7 +194,6 @@ while not done:
         screen.fill(black)
     if scene == 3:
         screen.fill(grey)
-        screen.blit(notepad_image, [575, 385])
         screen.blit(CPU_image, [180, 100])
         screen.blit(antivirus_image, [280, 100])
         screen.blit(motherboard_image, [370, 100])
@@ -187,7 +204,9 @@ while not done:
         screen.blit(power_supply_image, [340, 235])
         screen.blit(monitor_image, [480, 235])
         screen.blit(mouse_image, [620, 230])
-        screen.blit(cart_image, [80, 600])
+        screen.blit(cart_image, [70, 345])
+        screen.blit(floor_image, [0, 569])
+        screen.blit(notepad_image, [545, 355])
 
     # --- Drawing code 
     if scene == 0:
@@ -205,6 +224,8 @@ while not done:
         screen.blit(shopping_text_1, [shopping_x + 40, shopping_y + 20])
         screen.blit(shopping_text_2, [shopping_x + 35, shopping_y + 40])
         screen.blit(trivia_text, [trivia_x + 8, trivia_y + 30])
+    if scene == 3:
+        screen.blit(checklist_text, [615, 410])
         
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
