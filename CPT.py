@@ -9,6 +9,7 @@ Created: 28/03/2021
 ----------------------------------------------------------------------------------------------
 """
 import pygame
+import random
 pygame.init()
  
 # Define some colors
@@ -93,7 +94,12 @@ exit_width = 65
 button_pressed = False
 mouse_click_position = [0,0]
 scene = 0
- 
+
+# Shopping checklist possibilities
+screen.blit(CPU_text, [630, 440])
+screen.blit(mouse_text, [630, 465])
+screen.blit(monitor_text, [630, 490])
+
 # Loop until the user clicks the close button.
 done = False
 
@@ -152,9 +158,6 @@ while not done:
             print("User quit, go to main menu.")
             scene = 0
 
-   #if scene == 3:
-        
-
     # --- Game logic should go here
 
     # First, clear the screen to white or whatever background colour. 
@@ -162,7 +165,7 @@ while not done:
     
     # Render font and text
     button_font = pygame.font.SysFont("Oswald", 25, False, False)
-    small_font = pygame.foont.SysFont("Alegreya", 15, False, False)
+    small_font = pygame.font.SysFont("Alegreya", 23, False, False)
 
     cus_text_1 = button_font.render("Character", True, white)
     cus_text_2 = button_font.render("Customization", True, white)
@@ -226,7 +229,12 @@ while not done:
         screen.blit(trivia_text, [trivia_x + 8, trivia_y + 30])
     if scene == 3:
         screen.blit(checklist_text, [615, 410])
-        
+        """
+        screen.blit(CPU_text, [630, 440])
+        screen.blit(mouse_text, [630, 465])
+        screen.blit(monitor_text, [630, 490])
+        """
+
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
  
