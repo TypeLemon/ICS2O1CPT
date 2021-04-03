@@ -94,12 +94,9 @@ exit_width = 65
 button_pressed = False
 mouse_click_position = [0,0]
 scene = 0
-
-# Shopping checklist possibilities
-screen.blit(CPU_text, [630, 440])
-screen.blit(mouse_text, [630, 465])
-screen.blit(monitor_text, [630, 490])
-
+"""
+checklist = False
+"""
 # Loop until the user clicks the close button.
 done = False
 
@@ -152,6 +149,68 @@ while not done:
         elif shop_button_pressed:
             print("Started shopping game.")
             scene = 3
+    
+    if scene == 3:
+        # Check if mouse click is on CPU icon
+        if (180 <= mouse_click_position[0] and mouse_click_position[0] <= 180 + 80) and (100 <= mouse_click_position[1] and mouse_click_position[1] <= 100 + 90):
+            print("CPU selected")
+            CPU_pressed = True
+        else:
+            CPU_pressed = False
+        # Check if mouse click is on antivirus icon
+        if (280 <= mouse_click_position[0] and mouse_click_position[0] <= 280 + 90) and (100 <= mouse_click_position[1] and mouse_click_position[1] <= 100 + 100):
+            print("Antivirus selected")
+            antivirus_pressed = True
+        else:
+            antivirus_pressed = False
+        # Check if mouse click is on motherboard icon
+        if (370 <= mouse_click_position[0] and mouse_click_position[0] <= 370 + 100) and (100 <= mouse_click_position[1] and mouse_click_position[1] <= 100 + 90):
+            print("Motherboard selected")
+            mother_pressed = True
+        else:
+            mother_pressed = False
+        # Check if mouse click is on the RAM icon
+        if (470 <= mouse_click_position[0] and mouse_click_position[0] <= 470 + 110) and (100 <= mouse_click_position[1] and mouse_click_position[1] <= 100 + 100):
+            print("RAM selected")
+            ram_pressed = True
+        else:
+            ram_pressed = False
+        # Check if mouse click is on the graphics card icon
+        if (580 <= mouse_click_position[0] and mouse_click_position[0] <= 580 + 110) and (105 <= mouse_click_position[1] and mouse_click_position[1] <= 105 + 90):
+            print("Graphics card selected")
+            graphics_pressed = True
+        else:
+            graphics_pressed = False
+        # Check if mouse click is on the keyboard icon
+        if (95 <= mouse_click_position[0] and mouse_click_position[0] <= 95 + 120) and (240 <= mouse_click_position[1] and mouse_click_position[1] <= 240 + 80):
+            print("Keyboard selected")
+            keyboard_pressed = True
+        else:
+            keyboard_pressed = False
+        # Check if mouse click is on the hard drive icon
+        if (230 <= mouse_click_position[0] and mouse_click_position[0] <= 230 + 100) and (235 <= mouse_click_position[1] and mouse_click_position[1] <= 235 + 100):
+            print("Hard drive selected")
+            drive_pressed = True
+        else:
+            drive_pressed = False
+        # Check if mouse click is on the power supply icon
+        if (340 <= mouse_click_position[0] and mouse_click_position[0] <= 340 + 110) and (235 <= mouse_click_position[1] and mouse_click_position[1] <= 235 + 100):
+            print("Power supply selected")
+            supply_pressed = True
+        else:
+            supply_pressed = False
+        # Check if mouse click is on the monitor icon
+        if (480 <= mouse_click_position[0] and mouse_click_position[0] <= 480 + 110) and (235 <= mouse_click_position[1] and mouse_click_position[1] <= 235 + 90):
+            print("Monitor selected")
+            monitor_pressed = True
+        else:
+            monitor_pressed = False
+         # Check if mouse click is on the mouse icon
+        if (620 <= mouse_click_position[0] and mouse_click_position[0] <= 620 + 70) and (230 <= mouse_click_position[1] and mouse_click_position[1] <= 230 + 90):
+            print("Mouse selected")
+            mouse_pressed = True
+        else:
+            mouse_pressed = False
 
     if scene == 1 or scene == 2 or scene == 3:
         if (exit_x <= mouse_click_position[0] and mouse_click_position[0] <= exit_y + exit_length) and (exit_y <= mouse_click_position[1] and mouse_click_position[1] <= exit_y + exit_width):
@@ -229,7 +288,14 @@ while not done:
         screen.blit(trivia_text, [trivia_x + 8, trivia_y + 30])
     if scene == 3:
         screen.blit(checklist_text, [615, 410])
+        # Shopping checklist possibilities
         """
+        if checklist == False:
+            hardware_list = [CPU_text, mouse_text, monitor_text, power_text, graphics_text, RAM_text, keyboard_text, antivirus_text, hard_drive_text, motherboard_text]
+            hardware_text = random.choice(hardware_list)
+            screen.blit(hardware_text, [630, 440])
+            checklist = True
+
         screen.blit(CPU_text, [630, 440])
         screen.blit(mouse_text, [630, 465])
         screen.blit(monitor_text, [630, 490])
@@ -240,7 +306,7 @@ while not done:
  
     # --- Limit to 60 frames per second
     clock.tick(60)
-     
+        
 # Close the window and quit.
 # If you forget this line, the program will 'hang'
 # on exit if running from IDLE.
