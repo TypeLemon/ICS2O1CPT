@@ -65,6 +65,9 @@ graphics_card_selected = False
 keyboard_selected = False
 hard_drive_selected = False
 
+# Set other variables
+checklist_set = 1
+
 # Load and size images
 title = pygame.image.load("title.png").convert()
 title_image = pygame.transform.scale(title, [700, 230])
@@ -278,6 +281,8 @@ while not done:
             monitor_var = monitor_image
             mouse_var = mouse_image
             CPU_var = CPU_image
+            reset_checklist = True
+            checklist_set = 2
 
     if scene == 1 or scene == 2 or scene == 3:
         if (exit_x <= mouse_click_position[0] and mouse_click_position[0] <= exit_y + exit_length) and (exit_y <= mouse_click_position[1] and mouse_click_position[1] <= exit_y + exit_width):
@@ -344,22 +349,30 @@ while not done:
         screen.blit(x_mark_image, [583, 484])
         screen.blit(x_mark_image, [583, 511])
         screen.blit(x_mark_image, [670, 452])
-        
-        if CPU_selected:
-            screen.blit(sticky_box_image, [583, 430])
-            screen.blit(checkmark_image, [583, 430])
-        if mouse_selected:
-            screen.blit(sticky_box_image, [583, 457])
-            screen.blit(checkmark_image, [583, 457])
-        if monitor_selected:
-            screen.blit(sticky_box_image, [583, 484])
-            screen.blit(checkmark_image, [583, 484])
-        if hard_drive_selected:
-            screen.blit(sticky_box_image, [583, 511])
-            screen.blit(checkmark_image, [583, 511])
-        if power_supply_selected:
-            screen.blit(sticky_box_image, [670, 452])
-            screen.blit(checkmark_image, [670, 452])
+
+        if reset_checklist:
+            checklist_set = 2
+            
+        if checklist_set == 1:
+            if CPU_selected:
+                screen.blit(sticky_box_image, [583, 430])
+                screen.blit(checkmark_image, [583, 430])
+            if mouse_selected:
+                screen.blit(sticky_box_image, [583, 457])
+                screen.blit(checkmark_image, [583, 457])
+            if RAM_selected:
+                screen.blit(sticky_box_image, [583, 484])
+                screen.blit(checkmark_image, [583, 484])
+            if hard_drive_selected:
+                screen.blit(sticky_box_image, [583, 511])
+                screen.blit(checkmark_image, [583, 511])
+            if power_supply_selected:
+                screen.blit(sticky_box_image, [670, 452])
+                screen.blit(checkmark_image, [670, 452])
+        if checklist_set == 2:
+            if monitor_selected:
+                screen.blit(sticky_box_image, [583, 484])
+                screen.blit(checkmark_image, [583, 484])
 
     # --- Drawing code 
     if scene == 0:
@@ -380,13 +393,17 @@ while not done:
     if scene == 3:
         screen.blit(checklist_text, [615, 410])
         # Shopping checklist possibilities
-        #if question_set == 1:
-        screen.blit(CPU_text, [608, 440])
-        screen.blit(mouse_text, [608, 465])
+        if checklist_set == 1:
+            screen.blit(CPU_text, [608, 440])
+            screen.blit(mouse_text, [608, 465])
+            screen.blit(RAM_text, [608, 490])
+            screen.blit(hard_drive_text, [608, 515])
+            screen.blit(power_text, [693, 460])
+            screen.blit(supply_text, [693, 477])
+
+        """
         screen.blit(monitor_text, [608, 490])
-        screen.blit(hard_drive_text, [608, 515])
-        screen.blit(power_text, [693, 460])
-        screen.blit(supply_text, [693, 477])
+        """
         
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
