@@ -1,12 +1,15 @@
 """ 
 ----------------------------------------------------------------------------------------------
 Name: CPT.py
+
 Purpose: Interactive mini-games that test the user's computer knowledge on course content
+
 Author: Yeh.A
 Created: 28/03/2021 
 ----------------------------------------------------------------------------------------------
 """
 import pygame
+import random
 pygame.init()
  
 # Define some colors
@@ -91,7 +94,9 @@ exit_width = 65
 button_pressed = False
 mouse_click_position = [0,0]
 scene = 0
-
+"""
+checklist = False
+"""
 # Loop until the user clicks the close button.
 done = False
 
@@ -116,7 +121,7 @@ while not done:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             print("User pressed a mouse button.")
             mouse_click_position = pygame.mouse.get_pos()
-            
+
     if scene == 0:
         # Check if the mouse click is in the character customization button area
         if (custom_x <= mouse_click_position[0] and mouse_click_position[0] <= custom_x + button_length) and (custom_y <= mouse_click_position[1] and mouse_click_position[1] <= custom_y + button_width):
@@ -290,6 +295,7 @@ while not done:
             hardware_text = random.choice(hardware_list)
             screen.blit(hardware_text, [630, 440])
             checklist = True
+
         screen.blit(CPU_text, [630, 440])
         screen.blit(mouse_text, [630, 465])
         screen.blit(monitor_text, [630, 490])
