@@ -22,6 +22,7 @@ light_green = (153, 199, 135)
 coral = (240, 122, 101)
 grey = (211, 211, 211)
 off_white = (245, 245, 245)
+off_white_2 = (246, 246, 246)
   
 # Set the width and height of the screen [width, height]
 size = (800, 600)
@@ -77,6 +78,9 @@ cart.set_colorkey(off_white)
 cart_image = pygame.transform.scale(cart, [305, 256])
 floor_image = pygame.image.load("floor.png").convert()
 trans_box = pygame.image.load("transparentbox.png").convert()
+reset = pygame.image.load("reset.png").convert()
+reset.set_colorkey(off_white_2)
+reset_button = pygame.transform.scale(reset, [90, 90]) 
 
 # Set images to variables
 CPU_var = CPU_image
@@ -222,11 +226,26 @@ while not done:
             monitor_var = trans_box
             cursor = monitor_image
 
-         # Check if mouse click is on the mouse icon
+        # Check if mouse click is on the mouse icon
         if (620 <= mouse_click_position[0] and mouse_click_position[0] <= 620 + 70) and (230 <= mouse_click_position[1] and mouse_click_position[1] <= 230 + 90):
             print("Mouse selected")
             mouse_var = trans_box
             cursor = mouse_image
+        
+        # Check if mouse click is on the reset button
+        if (10 <= mouse_click_position[0] and mouse_click_position[0] <= 10 + 90) and (500 <= mouse_click_position[1] and mouse_click_position[1] <= 500 + 90):
+            print("User chose to reset")
+            cursor = trans_box
+            motherboard_var = motherboard_image
+            hard_drive_var = hard_drive_image
+            antivirus_var = antivirus_image
+            keyboard_var = keyboard_image
+            RAM_var = RAM_image
+            graphics_var = graphics_image
+            supply_var = power_supply_image
+            monitor_var = monitor_image
+            mouse_var = mouse_image
+            CPU_var = CPU_image
 
     if scene == 1 or scene == 2 or scene == 3:
         if (exit_x <= mouse_click_position[0] and mouse_click_position[0] <= exit_y + exit_length) and (exit_y <= mouse_click_position[1] and mouse_click_position[1] <= exit_y + exit_width):
@@ -282,10 +301,11 @@ while not done:
         screen.blit(supply_var, [340, 235])
         screen.blit(monitor_var, [480, 235])
         screen.blit(mouse_var, [620, 230])
-        screen.blit(floor_image, [0, 569])
-        screen.blit(notepad_image, [545, 355])
         screen.blit(cursor, [cursor_x, cursor_y])
-        screen.blit(cart_image, [70, 345])
+        screen.blit(cart_image, [70, 327])
+        screen.blit(floor_image, [0, 550])
+        screen.blit(notepad_image, [545, 355])
+        screen.blit(reset_button, [10, 500])
 
     # --- Drawing code 
     if scene == 0:
