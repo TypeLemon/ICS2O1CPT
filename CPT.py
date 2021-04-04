@@ -121,7 +121,9 @@ while not done:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             print("User pressed a mouse button.")
             mouse_click_position = pygame.mouse.get_pos()
-
+            player_x = mouse_click_position[0] - 50
+            player_y = mouse_click_position[1] - 50
+            
     if scene == 0:
         # Check if the mouse click is in the character customization button area
         if (custom_x <= mouse_click_position[0] and mouse_click_position[0] <= custom_x + button_length) and (custom_y <= mouse_click_position[1] and mouse_click_position[1] <= custom_y + button_width):
@@ -153,7 +155,7 @@ while not done:
     if scene == 3:
         # Check if mouse click is on CPU icon
         if (180 <= mouse_click_position[0] and mouse_click_position[0] <= 180 + 80) and (100 <= mouse_click_position[1] and mouse_click_position[1] <= 100 + 90):
-            print("CPU selected")
+            #print("CPU selected")
             CPU_pressed = True
         else:
             CPU_pressed = False
@@ -269,6 +271,8 @@ while not done:
         screen.blit(cart_image, [70, 345])
         screen.blit(floor_image, [0, 569])
         screen.blit(notepad_image, [545, 355])
+        if CPU_pressed:
+            screen.blit(CPU_image, [player_x, player_y])
 
     # --- Drawing code 
     if scene == 0:
