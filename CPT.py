@@ -30,6 +30,31 @@ screen = pygame.display.set_mode(size)
 
 pygame.display.set_caption("ICS2O1 CPT")
 
+# Set positions
+custom_x = 130
+custom_y = 460
+trivia_x = 530
+trivia_y = 460
+shopping_x = 330
+shopping_y = 460
+button_length = 160
+button_width = 80
+exit_x = 0
+exit_y = 0
+exit_length = 95
+exit_width = 65
+cart_x = 70
+cart_y = 327
+cart_length = 305
+cart_width = 256
+
+mouse_click_position = [0,0]
+scene = 0
+cursor_size = [10, 10]
+button_pressed = False
+CPU_selected = False 
+reset_checklist = False 
+
 # Load and size images
 title = pygame.image.load("title.png").convert()
 title_image = pygame.transform.scale(title, [700, 230])
@@ -75,12 +100,20 @@ mouse.set_colorkey(white)
 mouse_image = pygame.transform.scale(mouse, [70, 90])
 cart = pygame.image.load("shoppingcart.png").convert()
 cart.set_colorkey(off_white)
-cart_image = pygame.transform.scale(cart, [305, 256])
+cart_image = pygame.transform.scale(cart, [cart_length, cart_width])
 floor_image = pygame.image.load("floor.png").convert()
 trans_box = pygame.image.load("transparentbox.png").convert()
 reset = pygame.image.load("reset.png").convert()
 reset.set_colorkey(off_white_2)
 reset_button = pygame.transform.scale(reset, [90, 90]) 
+x_mark = pygame.image.load("x_mark.png").convert()
+x_mark.set_colorkey(off_white_2)
+x_mark_image = pygame.transform.scale(x_mark, [25, 25])
+checkmark = pygame.image.load("checkmark.png").convert()
+checkmark.set_colorkey(off_white_2)
+checkmark_image = pygame.transform.scale(checkmark, [25, 25])
+sticky_box = pygame.image.load("sticky_box.png").convert()
+sticky_box_image = pygame.transform.scale(sticky_box, [25, 25])
 
 # Set images to variables
 CPU_var = CPU_image
@@ -95,27 +128,6 @@ motherboard_var = motherboard_image
 antivirus_var = antivirus_image
 cursor = trans_box
 
-# Set positions
-custom_x = 130
-custom_y = 460
-trivia_x = 530
-trivia_y = 460
-shopping_x = 330
-shopping_y = 460
-button_length = 160
-button_width = 80
-exit_x = 0
-exit_y = 0
-exit_length = 95
-exit_width = 65
-
-button_pressed = False
-mouse_click_position = [0,0]
-scene = 0
-cursor_size = [10, 10]
-"""
-checklist = False
-"""
 # Loop until the user clicks the close button.
 done = False
 
@@ -177,6 +189,7 @@ while not done:
             print("CPU selected")
             CPU_var = trans_box
             cursor = CPU_image
+            CPU_selected = True
 
         # Check if mouse click is on antivirus icon
         if (280 <= mouse_click_position[0] and mouse_click_position[0] <= 280 + 90) and (100 <= mouse_click_position[1] and mouse_click_position[1] <= 100 + 100):
@@ -246,7 +259,8 @@ while not done:
             monitor_var = monitor_image
             mouse_var = mouse_image
             CPU_var = CPU_image
-
+            reset_checklist = True
+ 
     if scene == 1 or scene == 2 or scene == 3:
         if (exit_x <= mouse_click_position[0] and mouse_click_position[0] <= exit_y + exit_length) and (exit_y <= mouse_click_position[1] and mouse_click_position[1] <= exit_y + exit_width):
             print("User quit, go to main menu.")
@@ -302,10 +316,25 @@ while not done:
         screen.blit(monitor_var, [480, 235])
         screen.blit(mouse_var, [620, 230])
         screen.blit(cursor, [cursor_x, cursor_y])
-        screen.blit(cart_image, [70, 327])
+        screen.blit(cart_image, [cart_x, cart_y])
         screen.blit(floor_image, [0, 550])
         screen.blit(notepad_image, [545, 355])
         screen.blit(reset_button, [10, 500])
+        screen.blit(x_mark_image, [600, 430])
+        screen.blit(x_mark_image, [600, 460])
+        screen.blit(x_mark_image, [600, 490])
+        if CPU_selected:
+            screen.blit(sticky_box_image, [600, 430])
+            screen.blit(checkmark_image, [600, 430])
+        """
+        if reset_checklist:
+            screen.blit(sticky_box_image, [600, 430])
+            screen.blit(x_mark_image, [600, 430])
+            screen.blit(sticky_box_image, [600, 460])
+            screen.blit(x_mark_image, [600, 460])
+            screen.blit(sticky_box_image, [600, 490])
+            screen.blit(x_mark_image, [600, 490])
+        """
 
     # --- Drawing code 
     if scene == 0:
@@ -326,17 +355,9 @@ while not done:
     if scene == 3:
         screen.blit(checklist_text, [615, 410])
         # Shopping checklist possibilities
-        """
-        if checklist == False:
-            hardware_list = [CPU_text, mouse_text, monitor_text, power_text, graphics_text, RAM_text, keyboard_text, antivirus_text, hard_drive_text, motherboard_text]
-            hardware_text = random.choice(hardware_list)
-            screen.blit(hardware_text, [630, 440])
-            checklist = True
-
         screen.blit(CPU_text, [630, 440])
         screen.blit(mouse_text, [630, 465])
         screen.blit(monitor_text, [630, 490])
-        """
 
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
