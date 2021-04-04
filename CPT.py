@@ -76,6 +76,20 @@ cart = pygame.image.load("shoppingcart.png").convert()
 cart.set_colorkey(off_white)
 cart_image = pygame.transform.scale(cart, [305, 256])
 floor_image = pygame.image.load("floor.png").convert()
+trans_box = pygame.image.load("transparentbox.png").convert()
+
+# Set images to variables
+CPU_var = CPU_image
+RAM_var = RAM_image
+graphics_var = graphics_image
+keyboard_var = keyboard_image
+hard_drive_var = hard_drive_image
+supply_var = power_supply_image
+monitor_var = monitor_image
+mouse_var = mouse_image
+motherboard_var = motherboard_image
+antivirus_var = antivirus_image
+cursor = trans_box
 
 # Set positions
 custom_x = 130
@@ -94,6 +108,7 @@ exit_width = 65
 button_pressed = False
 mouse_click_position = [0,0]
 scene = 0
+cursor_size = [10, 10]
 """
 checklist = False
 """
@@ -121,6 +136,8 @@ while not done:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             print("User pressed a mouse button.")
             mouse_click_position = pygame.mouse.get_pos()
+            cursor_x = mouse_click_position[0] - cursor_size[0]/2;
+            cursor_y = mouse_click_position[1] - cursor_size[1]/2;
 
     if scene == 0:
         # Check if the mouse click is in the character customization button area
@@ -154,63 +171,62 @@ while not done:
         # Check if mouse click is on CPU icon
         if (180 <= mouse_click_position[0] and mouse_click_position[0] <= 180 + 80) and (100 <= mouse_click_position[1] and mouse_click_position[1] <= 100 + 90):
             print("CPU selected")
-            CPU_pressed = True
-        else:
-            CPU_pressed = False
+            CPU_var = trans_box
+            cursor = CPU_image
+
         # Check if mouse click is on antivirus icon
         if (280 <= mouse_click_position[0] and mouse_click_position[0] <= 280 + 90) and (100 <= mouse_click_position[1] and mouse_click_position[1] <= 100 + 100):
             print("Antivirus selected")
-            antivirus_pressed = True
-        else:
-            antivirus_pressed = False
+            antivirus_var = trans_box
+            cursor = antivirus_image
+            
         # Check if mouse click is on motherboard icon
         if (370 <= mouse_click_position[0] and mouse_click_position[0] <= 370 + 100) and (100 <= mouse_click_position[1] and mouse_click_position[1] <= 100 + 90):
             print("Motherboard selected")
-            mother_pressed = True
-        else:
-            mother_pressed = False
+            motherboard_var = trans_box
+            cursor = motherboard_image
+
         # Check if mouse click is on the RAM icon
         if (470 <= mouse_click_position[0] and mouse_click_position[0] <= 470 + 110) and (100 <= mouse_click_position[1] and mouse_click_position[1] <= 100 + 100):
             print("RAM selected")
-            ram_pressed = True
-        else:
-            ram_pressed = False
+            RAM_var = trans_box
+            cursor = RAM_image
+
         # Check if mouse click is on the graphics card icon
         if (580 <= mouse_click_position[0] and mouse_click_position[0] <= 580 + 110) and (105 <= mouse_click_position[1] and mouse_click_position[1] <= 105 + 90):
             print("Graphics card selected")
-            graphics_pressed = True
-        else:
-            graphics_pressed = False
+            graphics_var = trans_box
+            cursor = graphics_image
+
         # Check if mouse click is on the keyboard icon
         if (95 <= mouse_click_position[0] and mouse_click_position[0] <= 95 + 120) and (240 <= mouse_click_position[1] and mouse_click_position[1] <= 240 + 80):
             print("Keyboard selected")
-            keyboard_pressed = True
-        else:
-            keyboard_pressed = False
+            keyboard_var = trans_box
+            cursor = keyboard_image
+
         # Check if mouse click is on the hard drive icon
         if (230 <= mouse_click_position[0] and mouse_click_position[0] <= 230 + 100) and (235 <= mouse_click_position[1] and mouse_click_position[1] <= 235 + 100):
             print("Hard drive selected")
-            drive_pressed = True
-        else:
-            drive_pressed = False
+            hard_drive_var = trans_box
+            cursor = hard_drive_image
+
         # Check if mouse click is on the power supply icon
         if (340 <= mouse_click_position[0] and mouse_click_position[0] <= 340 + 110) and (235 <= mouse_click_position[1] and mouse_click_position[1] <= 235 + 100):
             print("Power supply selected")
-            supply_pressed = True
-        else:
-            supply_pressed = False
+            supply_var = trans_box
+            cursor = power_supply_image
+
         # Check if mouse click is on the monitor icon
         if (480 <= mouse_click_position[0] and mouse_click_position[0] <= 480 + 110) and (235 <= mouse_click_position[1] and mouse_click_position[1] <= 235 + 90):
             print("Monitor selected")
-            monitor_pressed = True
-        else:
-            monitor_pressed = False
+            monitor_var = trans_box
+            cursor = monitor_image
+
          # Check if mouse click is on the mouse icon
         if (620 <= mouse_click_position[0] and mouse_click_position[0] <= 620 + 70) and (230 <= mouse_click_position[1] and mouse_click_position[1] <= 230 + 90):
             print("Mouse selected")
-            mouse_pressed = True
-        else:
-            mouse_pressed = False
+            mouse_var = trans_box
+            cursor = mouse_image
 
     if scene == 1 or scene == 2 or scene == 3:
         if (exit_x <= mouse_click_position[0] and mouse_click_position[0] <= exit_y + exit_length) and (exit_y <= mouse_click_position[1] and mouse_click_position[1] <= exit_y + exit_width):
@@ -256,19 +272,20 @@ while not done:
         screen.fill(black)
     if scene == 3:
         screen.fill(grey)
-        screen.blit(CPU_image, [180, 100])
-        screen.blit(antivirus_image, [280, 100])
-        screen.blit(motherboard_image, [370, 100])
-        screen.blit(RAM_image, [470, 100])
-        screen.blit(graphics_image, [580, 105])
-        screen.blit(keyboard_image, [95, 240])
-        screen.blit(hard_drive_image, [230, 235])
-        screen.blit(power_supply_image, [340, 235])
-        screen.blit(monitor_image, [480, 235])
-        screen.blit(mouse_image, [620, 230])
-        screen.blit(cart_image, [70, 345])
+        screen.blit(CPU_var, [180, 100])
+        screen.blit(antivirus_var, [280, 100])
+        screen.blit(motherboard_var, [370, 100])
+        screen.blit(RAM_var, [470, 100])
+        screen.blit(graphics_var, [580, 105])
+        screen.blit(keyboard_var, [95, 240])
+        screen.blit(hard_drive_var, [230, 235])
+        screen.blit(supply_var, [340, 235])
+        screen.blit(monitor_var, [480, 235])
+        screen.blit(mouse_var, [620, 230])
         screen.blit(floor_image, [0, 569])
         screen.blit(notepad_image, [545, 355])
+        screen.blit(cursor, [cursor_x, cursor_y])
+        screen.blit(cart_image, [70, 345])
 
     # --- Drawing code 
     if scene == 0:
