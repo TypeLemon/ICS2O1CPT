@@ -22,6 +22,7 @@ coral = (240, 122, 101)
 grey = (211, 211, 211)
 off_white = (245, 245, 245)
 off_white_2 = (246, 246, 246)
+brown = (54, 41, 17)
   
 # Set the width and height of the screen [width, height]
 size = (800, 600)
@@ -320,10 +321,10 @@ while not done:
     hard_drive_text = small_font.render("Hard Drive", True, black)
     motherboard_text = small_font.render("Motherboard", True, black)
 
-    instr_text_1 = button_font.render("Welcome to the computer hardware shopping game! The checklist below tells you", True, black)
-    instr_text_2 = button_font.render("which items to click and put into the cart. You'll know you chose the correct item", True, black)
-    instr_text_3 = button_font.render("when the red x turns into a checkmark. Once you get all 5 checkmarks, click on", True, black)
-    instr_text_4 = button_font.render("the reset button to get the second checklist and repeat!", True, black)
+    instr_text_1 = button_font.render("Welcome to the computer hardware shopping game! The checklist below tells you", True, brown)
+    instr_text_2 = button_font.render("which items to click and put into the cart. You'll know you chose the correct item", True, brown)
+    instr_text_3 = button_font.render("when the red x turns into a checkmark. Once you get all 5 checkmarks, click on", True, brown)
+    instr_text_4 = button_font.render("the reset button to get the second checklist and repeat!", True, brown)
 
     # Copy images to screen
     if scene == 0:
