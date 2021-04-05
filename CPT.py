@@ -45,13 +45,13 @@ exit_width = 65
 cart_x = 70
 cart_y = 327
 cart_length = 305
-cart_width = 256
+cart_width = 255
 
 mouse_click_position = [0,0]
 scene = 0
 cursor_size = [10, 10]
 
-# Set booleans
+# Set hardware booleans
 button_pressed = False
 CPU_selected = False 
 mouse_selected = False
@@ -128,7 +128,7 @@ checkmark_image = pygame.transform.scale(checkmark, [25, 25])
 sticky_box = pygame.image.load("sticky_box.png").convert()
 sticky_box_image = pygame.transform.scale(sticky_box, [25, 25])
 
-# Set images to variables
+# Set images to variables for mouse click
 CPU_var = CPU_image
 RAM_var = RAM_image
 graphics_var = graphics_image
@@ -194,7 +194,12 @@ while not done:
             scene = 2
         elif shop_button_pressed:
             print("Started shopping game.")
-            scene = 3
+            scene = 3         
+
+    if scene == 1 or scene == 2 or scene == 3:
+        if (exit_x <= mouse_click_position[0] and mouse_click_position[0] <= exit_y + exit_length) and (exit_y <= mouse_click_position[1] and mouse_click_position[1] <= exit_y + exit_width):
+            print("User quit, go to main menu.")
+            scene = 0                       
     
     if scene == 3:
         # Check if mouse click is on CPU icon
@@ -282,12 +287,7 @@ while not done:
             mouse_var = mouse_image
             CPU_var = CPU_image
             reset_checklist = True
-            checklist_set = 2
-
-    if scene == 1 or scene == 2 or scene == 3:
-        if (exit_x <= mouse_click_position[0] and mouse_click_position[0] <= exit_y + exit_length) and (exit_y <= mouse_click_position[1] and mouse_click_position[1] <= exit_y + exit_width):
-            print("User quit, go to main menu.")
-            scene = 0
+            checklist_set = 2     
 
     # --- Game logic should go here
 
@@ -310,7 +310,8 @@ while not done:
     monitor_text = small_font.render("Monitor", True, black)
     power_text = small_font.render("Power", True, black)
     supply_text = small_font.render("Supply", True, black)
-    graphics_text = small_font.render("Graphics Card", True, black)
+    graphics_text = small_font.render("Graphics", True, black)
+    card_text = small_font.render("Card", True, black)
     RAM_text = small_font.render("RAM", True, black)    
     keyboard_text = small_font.render("Keyboard", True, black)
     antivirus_text = small_font.render("Antivirus", True, black)
@@ -370,9 +371,21 @@ while not done:
                 screen.blit(sticky_box_image, [670, 452])
                 screen.blit(checkmark_image, [670, 452])
         if checklist_set == 2:
+            if antivirus_selected:
+                screen.blit(sticky_box_image, [583, 430])
+                screen.blit(checkmark_image, [583, 430])
             if monitor_selected:
+                screen.blit(sticky_box_image, [583, 457])
+                screen.blit(checkmark_image, [583, 457])
+            if keyboard_selected:
                 screen.blit(sticky_box_image, [583, 484])
                 screen.blit(checkmark_image, [583, 484])
+            if motherboard_selected:
+                screen.blit(sticky_box_image, [583, 511])
+                screen.blit(checkmark_image, [583, 511])
+            if graphics_card_selected:
+                screen.blit(sticky_box_image, [670, 452])
+                screen.blit(checkmark_image, [670, 452])
 
     # --- Drawing code 
     if scene == 0:
@@ -392,7 +405,7 @@ while not done:
         screen.blit(trivia_text, [trivia_x + 8, trivia_y + 30])
     if scene == 3:
         screen.blit(checklist_text, [615, 410])
-        # Shopping checklist possibilities
+        # Shopping checklist possibilities 1 & 2
         if checklist_set == 1:
             screen.blit(CPU_text, [608, 440])
             screen.blit(mouse_text, [608, 465])
@@ -400,17 +413,20 @@ while not done:
             screen.blit(hard_drive_text, [608, 515])
             screen.blit(power_text, [693, 460])
             screen.blit(supply_text, [693, 477])
-
-        """
-        screen.blit(monitor_text, [608, 490])
-        """
-        
+        if checklist_set == 2:
+            screen.blit(antivirus_text, [608, 440])
+            screen.blit(monitor_text, [608, 465])
+            screen.blit(keyboard_text, [608, 490])
+            screen.blit(motherboard_text, [608, 515])
+            screen.blit(graphics_text, [693, 460])
+            screen.blit(card_text, [693, 477])
+            
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
  
     # --- Limit to 60 frames per second
     clock.tick(60)
-        
+      
 # Close the window and quit.
 # If you forget this line, the program will 'hang'
 # on exit if running from IDLE.
