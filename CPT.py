@@ -200,6 +200,7 @@ while not done:
         if (exit_x <= mouse_click_position[0] and mouse_click_position[0] <= exit_y + exit_length) and (exit_y <= mouse_click_position[1] and mouse_click_position[1] <= exit_y + exit_width):
             print("User quit, go to main menu.")
             scene = 0                       
+            revert_checklist = True
     
     if scene == 3:
         # Check if mouse click is on CPU icon
@@ -274,7 +275,7 @@ while not done:
         
         # Check if mouse click is on the reset button
         if (10 <= mouse_click_position[0] and mouse_click_position[0] <= 10 + 90) and (500 <= mouse_click_position[1] and mouse_click_position[1] <= 500 + 90):
-            print("User chose to reset")
+            print("User chose to switch to checklist 2")
             cursor = trans_box
             motherboard_var = motherboard_image
             hard_drive_var = hard_drive_image
@@ -303,7 +304,8 @@ while not done:
     trivia_text = button_font.render("Trivia Mini-Game", True, white) 
     shopping_text_1 = button_font.render("Shopping", True, white)
     shopping_text_2 = button_font.render("Mini-Game", True, white)
-    checklist_text = button_font.render("Checklist", True, black)
+    checklist_text_1 = button_font.render("Checklist 1", True, black)
+    checklist_text_2 = button_font.render("Checklist 2", True, black)
 
     CPU_text = small_font.render("CPU", True, black)
     mouse_text = small_font.render("Mouse", True, black)
@@ -353,7 +355,7 @@ while not done:
 
         if reset_checklist:
             checklist_set = 2
-            
+
         if checklist_set == 1:
             if CPU_selected:
                 screen.blit(sticky_box_image, [583, 430])
@@ -404,9 +406,9 @@ while not done:
         screen.blit(shopping_text_2, [shopping_x + 35, shopping_y + 40])
         screen.blit(trivia_text, [trivia_x + 8, trivia_y + 30])
     if scene == 3:
-        screen.blit(checklist_text, [615, 410])
         # Shopping checklist possibilities 1 & 2
         if checklist_set == 1:
+            screen.blit(checklist_text_1, [615, 410])
             screen.blit(CPU_text, [608, 440])
             screen.blit(mouse_text, [608, 465])
             screen.blit(RAM_text, [608, 490])
@@ -414,6 +416,7 @@ while not done:
             screen.blit(power_text, [693, 460])
             screen.blit(supply_text, [693, 477])
         if checklist_set == 2:
+            screen.blit(checklist_text_2, [615, 410])
             screen.blit(antivirus_text, [608, 440])
             screen.blit(monitor_text, [608, 465])
             screen.blit(keyboard_text, [608, 490])
