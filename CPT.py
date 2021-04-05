@@ -298,7 +298,7 @@ while not done:
     # Render font and text
     button_font = pygame.font.SysFont("Oswald", 25, False, False)
     small_font = pygame.font.SysFont("Alegreya", 23, False, False)
-
+    
     cus_text_1 = button_font.render("Character", True, white)
     cus_text_2 = button_font.render("Customization", True, white)
     trivia_text = button_font.render("Trivia Mini-Game", True, white) 
@@ -319,6 +319,11 @@ while not done:
     antivirus_text = small_font.render("Antivirus", True, black)
     hard_drive_text = small_font.render("Hard Drive", True, black)
     motherboard_text = small_font.render("Motherboard", True, black)
+
+    instr_text_1 = button_font.render("Welcome to the computer hardware shopping game! The checklist below tells you", True, black)
+    instr_text_2 = button_font.render("which items to click and put into the cart. You'll know you chose the correct item", True, black)
+    instr_text_3 = button_font.render("when the red x turns into a checkmark. Once you get all 5 checkmarks, click on", True, black)
+    instr_text_4 = button_font.render("the reset button to get the second checklist and repeat!", True, black)
 
     # Copy images to screen
     if scene == 0:
@@ -406,6 +411,11 @@ while not done:
         screen.blit(shopping_text_2, [shopping_x + 35, shopping_y + 40])
         screen.blit(trivia_text, [trivia_x + 8, trivia_y + 30])
     if scene == 3:
+        screen.blit(instr_text_1, [110, 13])
+        screen.blit(instr_text_2, [110, 33])
+        screen.blit(instr_text_3, [110, 53])
+        screen.blit(instr_text_4, [110, 73])
+
         # Shopping checklist possibilities 1 & 2
         if checklist_set == 1:
             screen.blit(checklist_text_1, [615, 410])
@@ -433,4 +443,4 @@ while not done:
 # Close the window and quit.
 # If you forget this line, the program will 'hang'
 # on exit if running from IDLE.
-pygame.quit() 
+pygame.quit()
