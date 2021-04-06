@@ -1,9 +1,7 @@
 """ 
 ----------------------------------------------------------------------------------------------
 Name: CPT.py
-
 Purpose: Interactive mini-games that test the user's computer knowledge on course content
-
 Author: Yeh.A
 Created: 28/03/2021 
 ----------------------------------------------------------------------------------------------
@@ -22,7 +20,6 @@ coral = (240, 122, 101)
 grey = (211, 211, 211)
 off_white = (245, 245, 245)
 off_white_2 = (246, 246, 246)
-brown = (54, 41, 17)
   
 # Set the width and height of the screen [width, height]
 size = (800, 600)
@@ -31,11 +28,9 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption("ICS2O1 CPT")
 
 # Set positions
-custom_x = 130
-custom_y = 460
-trivia_x = 530
+trivia_x = 455
 trivia_y = 460
-shopping_x = 330
+shopping_x = 260
 shopping_y = 460
 button_length = 160
 button_width = 80
@@ -151,7 +146,6 @@ clock = pygame.time.Clock()
 """
 Numbers that control the different screens
 0 = Main Menu
-1 = Character Customization Screen (pink)
 2 = Trivia Mini Game (lavender)
 3 = Shopping Mini Game (orange)
 """
@@ -170,11 +164,6 @@ while not done:
             cursor_y = mouse_click_position[1] - cursor_size[1]/2;
 
     if scene == 0:
-        # Check if the mouse click is in the character customization button area
-        if (custom_x <= mouse_click_position[0] and mouse_click_position[0] <= custom_x + button_length) and (custom_y <= mouse_click_position[1] and mouse_click_position[1] <= custom_y + button_width):
-            cus_button_pressed = True
-        else:
-            cus_button_pressed = False
         # Check if the mouse click is in the trivia mini game button area
         if (trivia_x <= mouse_click_position[0] and mouse_click_position[0] <= trivia_x + button_length) and (trivia_y <= mouse_click_position[1] and mouse_click_position[1] <= trivia_y + button_width):
             trivia_button_pressed = True
@@ -187,17 +176,14 @@ while not done:
             shop_button_pressed = False
         
         # Main menu buttons that switch screens
-        if cus_button_pressed:
-            print("Started character customization.")
-            scene = 1
-        elif trivia_button_pressed:
+        if trivia_button_pressed:
             print("Started trivia game.")
             scene = 2
         elif shop_button_pressed:
             print("Started shopping game.")
             scene = 3         
 
-    if scene == 1 or scene == 2 or scene == 3:
+    if scene == 2 or scene == 3:
         if (exit_x <= mouse_click_position[0] and mouse_click_position[0] <= exit_y + exit_length) and (exit_y <= mouse_click_position[1] and mouse_click_position[1] <= exit_y + exit_width):
             print("User quit, go to main menu.")
             scene = 0                       
@@ -300,8 +286,6 @@ while not done:
     button_font = pygame.font.SysFont("Oswald", 25, False, False)
     small_font = pygame.font.SysFont("Alegreya", 23, False, False)
     
-    cus_text_1 = button_font.render("Character", True, white)
-    cus_text_2 = button_font.render("Customization", True, white)
     trivia_text = button_font.render("Trivia Mini-Game", True, white) 
     shopping_text_1 = button_font.render("Shopping", True, white)
     shopping_text_2 = button_font.render("Mini-Game", True, white)
@@ -321,10 +305,10 @@ while not done:
     hard_drive_text = small_font.render("Hard Drive", True, black)
     motherboard_text = small_font.render("Motherboard", True, black)
 
-    instr_text_1 = button_font.render("Welcome to the computer hardware shopping game! The checklist below tells you", True, brown)
-    instr_text_2 = button_font.render("which items to click and put into the cart. You'll know you chose the correct item", True, brown)
-    instr_text_3 = button_font.render("when the red x turns into a checkmark. Once you get all 5 checkmarks, click on", True, brown)
-    instr_text_4 = button_font.render("the reset button to get the second checklist and repeat!", True, brown)
+    instr_text_1 = button_font.render("Welcome to the computer hardware shopping game! The checklist below tells you", True, black)
+    instr_text_2 = button_font.render("which items to click and put into the cart. You'll know you chose the correct item", True, black)
+    instr_text_3 = button_font.render("when the red x turns into a checkmark. Once you get all 5 checkmarks, click on", True, black)
+    instr_text_4 = button_font.render("the reset button to get the second checklist and repeat!", True, black)
 
     # Copy images to screen
     if scene == 0:
@@ -332,8 +316,6 @@ while not done:
         screen.blit(title_image, [70, 50])
         screen.blit(typing_image, [170, 280])
         screen.blit(brain_image, [460, 280])
-    if scene == 1:
-        screen.fill(grey)
     if scene == 2:
         screen.fill(black)
     if scene == 3:
@@ -397,17 +379,14 @@ while not done:
 
     # --- Drawing code 
     if scene == 0:
-        pygame.draw.rect(screen, salmon, [custom_x, custom_y, button_length, button_width])
         pygame.draw.rect(screen, orange, [shopping_x, shopping_y, button_length, button_width])
         pygame.draw.rect(screen, lavender, [trivia_x, trivia_y, button_length, button_width])
-    if scene == 1 or scene == 2 or scene == 3:
+    if scene == 2 or scene == 3:
         pygame.draw.rect(screen, coral, [exit_x, exit_y, exit_length, exit_width])
         screen.blit(exit_image, [exit_x, exit_y + 5])
     
     # Copy text to screen
     if scene == 0:
-        screen.blit(cus_text_1, [custom_x + 40, custom_y + 20])
-        screen.blit(cus_text_2, [custom_x + 20, custom_y + 40])
         screen.blit(shopping_text_1, [shopping_x + 40, shopping_y + 20])
         screen.blit(shopping_text_2, [shopping_x + 35, shopping_y + 40])
         screen.blit(trivia_text, [trivia_x + 8, trivia_y + 30])
