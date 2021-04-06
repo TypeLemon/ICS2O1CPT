@@ -20,7 +20,7 @@ coral = (240, 122, 101)
 grey = (211, 211, 211)
 off_white = (245, 245, 245)
 off_white_2 = (246, 246, 246)
-  
+
 # Set the width and height of the screen [width, height]
 size = (800, 600)
 screen = pygame.display.set_mode(size)
@@ -46,12 +46,14 @@ true_x = 530
 true_y = 525
 false_x = 660
 false_y = 525
+tf_length = 110
+tf_width = 60
 
 mouse_click_position = [0,0]
 scene = 0
 cursor_size = [10, 10]
 
-# Set hardware booleans
+# Set booleans
 button_pressed = False
 CPU_selected = False 
 mouse_selected = False
@@ -64,6 +66,8 @@ RAM_selected = False
 graphics_card_selected = False
 keyboard_selected = False
 hard_drive_selected = False
+true_selected = False
+false_selected = False
 
 # Set other variables
 checklist_set = 1
@@ -130,11 +134,14 @@ sticky_box_image = pygame.transform.scale(sticky_box, [25, 25])
 gameshow = pygame.image.load("gameshow.png").convert()
 gameshow_back = pygame.transform.scale(gameshow, [800, 520])
 true_image = pygame.image.load("true.png").convert()
-true_button = pygame.transform.scale(true_image, [110, 60])
+true_button = pygame.transform.scale(true_image, [tf_length, tf_width])
 false_image = pygame.image.load("false.png").convert()
-false_button = pygame.transform.scale(false_image, [110, 60])
+false_button = pygame.transform.scale(false_image, [tf_length, tf_width])
 grey_rect = pygame.image.load("greyrectangle.png").convert()
 grey_image = pygame.transform.scale(grey_rect, [800, 90])
+speech = pygame.image.load("bubble.jpg").convert()
+speech.set_colorkey(black)
+speech_bubble = pygame.transform.scale(speech, [190, 170])
 
 # Set images to variables for mouse click
 CPU_var = CPU_image
@@ -186,7 +193,6 @@ while not done:
             shop_button_pressed = True
         else:
             shop_button_pressed = False
-        
         # Main menu buttons that switch screens
         if trivia_button_pressed:
             print("Started trivia game.")
@@ -201,6 +207,16 @@ while not done:
             scene = 0                       
             revert_checklist = True
     
+    if scene == 2:
+        # Check if mouse click is on true button
+        if (true_x <= mouse_click_position[0] and mouse_click_position[0] <= true_x + tf_length) and (true_y <= mouse_click_position[1] and mouse_click_position[1] <= true_y + tf_width):
+            print("User pressed true button")
+            true_selected = True
+        # Check if mouse click is on false button
+        if (false_x <= mouse_click_position[0] and mouse_click_position[0] <= false_x + tf_length) and (false_y <= mouse_click_position[1] and mouse_click_position[1] <= false_y + tf_width):
+            print("User pressed false button")
+            false_selected = True
+    
     if scene == 3:
         # Check if mouse click is on CPU icon
         if (180 <= mouse_click_position[0] and mouse_click_position[0] <= 180 + 80) and (100 <= mouse_click_position[1] and mouse_click_position[1] <= 100 + 90):
@@ -208,70 +224,60 @@ while not done:
             CPU_var = trans_box
             cursor = CPU_image
             CPU_selected = True
-
         # Check if mouse click is on antivirus icon
         if (280 <= mouse_click_position[0] and mouse_click_position[0] <= 280 + 90) and (100 <= mouse_click_position[1] and mouse_click_position[1] <= 100 + 100):
             print("Antivirus selected")
             antivirus_var = trans_box
             cursor = antivirus_image
             antivirus_selected = True
-            
         # Check if mouse click is on motherboard icon
         if (370 <= mouse_click_position[0] and mouse_click_position[0] <= 370 + 100) and (100 <= mouse_click_position[1] and mouse_click_position[1] <= 100 + 90):
             print("Motherboard selected")
             motherboard_var = trans_box
             cursor = motherboard_image
             motherboard_selected = True
-
         # Check if mouse click is on the RAM icon
         if (470 <= mouse_click_position[0] and mouse_click_position[0] <= 470 + 110) and (100 <= mouse_click_position[1] and mouse_click_position[1] <= 100 + 100):
             print("RAM selected")
             RAM_var = trans_box
             cursor = RAM_image
             RAM_selected = True 
-
         # Check if mouse click is on the graphics card icon
         if (580 <= mouse_click_position[0] and mouse_click_position[0] <= 580 + 110) and (105 <= mouse_click_position[1] and mouse_click_position[1] <= 105 + 90):
             print("Graphics card selected")
             graphics_var = trans_box
             cursor = graphics_image
             graphics_card_selected = True
-
         # Check if mouse click is on the keyboard icon
         if (95 <= mouse_click_position[0] and mouse_click_position[0] <= 95 + 120) and (240 <= mouse_click_position[1] and mouse_click_position[1] <= 240 + 80):
             print("Keyboard selected")
             keyboard_var = trans_box
             cursor = keyboard_image
             keyboard_selected = True
-
         # Check if mouse click is on the hard drive icon
         if (230 <= mouse_click_position[0] and mouse_click_position[0] <= 230 + 100) and (235 <= mouse_click_position[1] and mouse_click_position[1] <= 235 + 100):
             print("Hard drive selected")
             hard_drive_var = trans_box
             cursor = hard_drive_image
             hard_drive_selected = True
-
         # Check if mouse click is on the power supply icon
         if (340 <= mouse_click_position[0] and mouse_click_position[0] <= 340 + 110) and (235 <= mouse_click_position[1] and mouse_click_position[1] <= 235 + 100):
             print("Power supply selected")
             supply_var = trans_box
             cursor = power_supply_image
             power_supply_selected = True
-
         # Check if mouse click is on the monitor icon
         if (480 <= mouse_click_position[0] and mouse_click_position[0] <= 480 + 110) and (235 <= mouse_click_position[1] and mouse_click_position[1] <= 235 + 90):
             print("Monitor selected")
             monitor_var = trans_box
             cursor = monitor_image
             monitor_selected = True
-
         # Check if mouse click is on the mouse icon
         if (620 <= mouse_click_position[0] and mouse_click_position[0] <= 620 + 70) and (230 <= mouse_click_position[1] and mouse_click_position[1] <= 230 + 90):
             print("Mouse selected")
             mouse_var = trans_box
             cursor = mouse_image
             mouse_selected = True
-        
         # Check if mouse click is on the reset button
         if (10 <= mouse_click_position[0] and mouse_click_position[0] <= 10 + 90) and (500 <= mouse_click_position[1] and mouse_click_position[1] <= 500 + 90):
             print("User chose to switch to checklist 2")
@@ -316,7 +322,6 @@ while not done:
     antivirus_text = small_font.render("Antivirus", True, black)
     hard_drive_text = small_font.render("Hard Drive", True, black)
     motherboard_text = small_font.render("Motherboard", True, black)
-
     instr_text_1 = button_font.render("Welcome to the computer hardware shopping game! The checklist below tells you", True, black)
     instr_text_2 = button_font.render("which items to click and put into the cart. You'll know you chose the correct item", True, black)
     instr_text_3 = button_font.render("when the red x turns into a checkmark. Once you get all 5 checkmarks, click on", True, black)
@@ -333,6 +338,7 @@ while not done:
         screen.blit(grey_image, [0, 510])
         screen.blit(true_button, [true_x, true_y])
         screen.blit(false_button, [false_x, false_y])
+        screen.blit(speech_bubble, [175, 15])
     if scene == 3:
         screen.fill(grey)
         screen.blit(CPU_var, [180, 100])
