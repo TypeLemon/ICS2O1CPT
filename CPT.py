@@ -42,6 +42,10 @@ cart_x = 70
 cart_y = 327
 cart_length = 305
 cart_width = 255
+true_x = 530
+true_y = 525
+false_x = 660
+false_y = 525
 
 mouse_click_position = [0,0]
 scene = 0
@@ -125,6 +129,12 @@ sticky_box = pygame.image.load("sticky_box.png").convert()
 sticky_box_image = pygame.transform.scale(sticky_box, [25, 25])
 gameshow = pygame.image.load("gameshow.png").convert()
 gameshow_back = pygame.transform.scale(gameshow, [800, 520])
+true_image = pygame.image.load("true.png").convert()
+true_button = pygame.transform.scale(true_image, [110, 60])
+false_image = pygame.image.load("false.png").convert()
+false_button = pygame.transform.scale(false_image, [110, 60])
+grey_rect = pygame.image.load("greyrectangle.png").convert()
+grey_image = pygame.transform.scale(grey_rect, [800, 90])
 
 # Set images to variables for mouse click
 CPU_var = CPU_image
@@ -320,6 +330,9 @@ while not done:
         screen.blit(brain_image, [460, 280])
     if scene == 2:
         screen.blit(gameshow_back, [0, 0])
+        screen.blit(grey_image, [0, 510])
+        screen.blit(true_button, [true_x, true_y])
+        screen.blit(false_button, [false_x, false_y])
     if scene == 3:
         screen.fill(grey)
         screen.blit(CPU_var, [180, 100])
@@ -383,8 +396,6 @@ while not done:
     if scene == 0:
         pygame.draw.rect(screen, orange, [shopping_x, shopping_y, button_length, button_width])
         pygame.draw.rect(screen, lavender, [trivia_x, trivia_y, button_length, button_width])
-    if scene == 2:
-        pygame.draw.rect(screen, grey, [0, 510, 800, 600])
     if scene == 2 or scene == 3:
         pygame.draw.rect(screen, coral, [exit_x, exit_y, exit_length, exit_width])
         screen.blit(exit_image, [exit_x, exit_y + 5])
