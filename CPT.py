@@ -71,7 +71,7 @@ false_selected = False
 
 # Set other variables
 checklist_set = 1
-question = 0
+question = 1
 
 # Load and size images
 title = pygame.image.load("title.png").convert()
@@ -177,18 +177,18 @@ while not done:
         if event.type == pygame.QUIT: # If user clicked close
             print("User asked to quit.")
             done = True # Flag that we are done so we exit this loop
-        elif event.type == pygame.MOUSEBUTTONDOWN:
+        if event.type == pygame.MOUSEBUTTONDOWN:
             print("User pressed a mouse button.")
             mouse_click_position = pygame.mouse.get_pos()
             cursor_x = mouse_click_position[0] - cursor_size[0]/2;
             cursor_y = mouse_click_position[1] - cursor_size[1]/2;
         if scene == 2:
-            while question < 10:
-                if event.type == pygame.KEYUP:
+            if question < 10:
+                if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN:
-                        print("User pressed enter/return key for next question")
-                        question += 1
-        
+                        question = question + 1
+                        print(question)
+         
     if scene == 0:
         # Check if the mouse click is in the trivia mini game button area
         if (trivia_x <= mouse_click_position[0] and mouse_click_position[0] <= trivia_x + button_length) and (trivia_y <= mouse_click_position[1] and mouse_click_position[1] <= trivia_y + button_width):
@@ -334,16 +334,34 @@ while not done:
     instr_text_3 = button_font.render("when the red x turns into a checkmark. Once you get all 5 checkmarks, click on", True, black)
     instr_text_4 = button_font.render("the reset button to get the second checklist and repeat!", True, black)
 
-    question_1_txt = small_font.render("The sequence of events in the information processing cycle is input, processing, output, and storage.")
-    question_2_txt = small_font.render("1 byte = 10 bits")
-    question_3_txt = small_font.render("Megabytes and gigabytes are usually used to measure computer storage and memory.")
-    question_4_txt = small_font.render("The higher the dpi or ppi, the less information that can be captured or displayed.")
-    question_5_txt = small_font.render("Monitors, speakers, trackballs, and touchscreen are all input devices.")
-    question_6_txt = small_font.render("Computer worms are malware that destroy data and files on the computer. They also replicate themselves to spread.")
-    question_7_txt = small_font.render("The CPU is the brain of the computer.")
-    question_8_txt = small_font.render("Multimedia, design, and productivity are types of application software.")
-    question_9_txt = small_font.render("It's better to build faster single cores than multicore processors for the CPU.")
-    question_10_txt = small_font.render("Modems convert data into a format so that it can be transmitted from computer to computer.")
+    q_number_1 = button_font.render("Question 1", True, salmon)
+    q_number_2 = button_font.render("Question 2", True, salmon)
+    q_number_3 = button_font.render("Question 3", True, salmon)
+    q_number_4 = button_font.render("Question 4", True, salmon)
+    q_number_5 = button_font.render("Question 5", True, salmon)
+    q_number_6 = button_font.render("Question 6", True, salmon)
+    q_number_7 = button_font.render("Question 7", True, salmon)
+    q_number_8 = button_font.render("Question 8", True, salmon)
+    q_number_9 = button_font.render("Question 9", True, salmon)
+    q_number_10 = button_font.render("Question 10", True, salmon)
+
+    question_1 = small_font.render("The sequence of events in the information processing cycle is", True, black)
+    question_1_2 = small_font.render("input, processing, output, and storage.", True, black)
+    question_2 = small_font.render("1 byte = 10 bits", True, black)
+    question_3 = small_font.render("Megabytes and gigabytes are usually used to measure computer", True, black)
+    question_3_2 = small_font.render("storage and memory.", True, black)
+    question_4 = small_font.render("The higher the dpi or ppi, the less information that can be", True, black)
+    question_4_2 = small_font.render("captured or displayed.", True, black)
+    question_5 = small_font.render("Monitors, speakers, trackballs, and touchscreen are all input devices.", True, black)
+    question_6 = small_font.render("Computer worms are malware that destroy data and files on the", True, black)
+    question_6_2 = small_font.render("computer. They also replicate themselves to spread.", True, black)
+    question_7 = small_font.render("The CPU is the brain of the computer.", True, black)
+    question_8 = small_font.render("Multimedia, design, and productivity are all types of application", True, black)
+    question_8_2 = small_font.render("software.", True, black)
+    question_9 = small_font.render("It's better to build faster single cores than multicore processors", True, black)
+    question_9_2 = small_font.render("for the CPU.", True, black)
+    question_10 = small_font.render("Modems convert data into a format so that it can be transmitted", True, black)
+    question_10_2 = small_font.render("from computer to computer.", True, black)
 
     # Copy images to screen
     if scene == 0:
@@ -420,6 +438,7 @@ while not done:
     if scene == 0:
         pygame.draw.rect(screen, orange, [shopping_x, shopping_y, button_length, button_width])
         pygame.draw.rect(screen, lavender, [trivia_x, trivia_y, button_length, button_width])
+
     if scene == 2 or scene == 3:
         pygame.draw.rect(screen, coral, [exit_x, exit_y, exit_length, exit_width])
         screen.blit(exit_image, [exit_x, exit_y + 5])
@@ -429,12 +448,51 @@ while not done:
         screen.blit(shopping_text_1, [shopping_x + 40, shopping_y + 20])
         screen.blit(shopping_text_2, [shopping_x + 35, shopping_y + 40])
         screen.blit(trivia_text, [trivia_x + 8, trivia_y + 30])
+
+    if scene == 2:
+        if question == 1:
+            screen.blit(q_number_1, [25, 523])
+            screen.blit(question_1, [25, 553])
+            screen.blit(question_1_2, [25, 570])
+        if question == 2:
+            screen.blit(q_number_2, [25, 523])
+            screen.blit(question_2, [25, 553])
+        if question == 3:
+            screen.blit(q_number_3, [25, 523])
+            screen.blit(question_3, [25, 553])
+            screen.blit(question_3_2, [25, 570])
+        if question == 4:
+            screen.blit(q_number_4, [25, 523])
+            screen.blit(question_4, [25, 553])
+            screen.blit(question_4_2, [25, 570])
+        if question == 5:
+            screen.blit(q_number_5, [25, 523])
+            screen.blit(question_5, [25, 553])
+        if question == 6:
+            screen.blit(q_number_6, [25, 523])
+            screen.blit(question_6, [25, 553])
+            screen.blit(question_6_2, [25, 570])
+        if question == 7:
+            screen.blit(q_number_7, [25, 523])
+            screen.blit(question_7, [25, 553])
+        if question == 8:
+            screen.blit(q_number_8, [25, 523])
+            screen.blit(question_8, [25, 553])
+            screen.blit(question_8_2, [25, 570])
+        if question == 9:
+            screen.blit(q_number_9, [25, 523])
+            screen.blit(question_9, [25, 553])
+            screen.blit(question_9_2, [25, 570])
+        if question == 10:
+            screen.blit(q_number_10, [25, 523])
+            screen.blit(question_10, [25, 553])
+            screen.blit(question_10_2, [25, 570])
+
     if scene == 3:
         screen.blit(instr_text_1, [110, 13])
         screen.blit(instr_text_2, [110, 33])
         screen.blit(instr_text_3, [110, 53])
         screen.blit(instr_text_4, [110, 73])
-
         # Shopping checklist possibilities 1 & 2
         if checklist_set == 1:
             screen.blit(checklist_text_1, [615, 410])
