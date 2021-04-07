@@ -18,6 +18,7 @@ lavender = (203, 155, 242)
 light_green = (153, 199, 135)
 coral = (240, 122, 101)
 grey = (211, 211, 211)
+red = (212, 45, 19)
 off_white = (245, 245, 245)
 off_white_2 = (246, 246, 246)
 
@@ -68,6 +69,9 @@ keyboard_selected = False
 hard_drive_selected = False
 true_selected = False
 false_selected = False
+show_correct = False
+show_incorrect = False
+white_box_cover = False
 
 # Set other variables
 checklist_set = 1
@@ -143,6 +147,8 @@ grey_image = pygame.transform.scale(grey_rect, [800, 90])
 speech = pygame.image.load("bubble.jpg").convert()
 speech.set_colorkey(black)
 speech_bubble = pygame.transform.scale(speech, [190, 170])
+box = pygame.image.load("white_box.png").convert()
+white_box = pygame.transform.scale(box, [110, 55])
 
 # Set images to variables for mouse click
 CPU_var = CPU_image
@@ -186,8 +192,8 @@ while not done:
             if question < 10:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN:
+                        white_box_cover = True
                         question = question + 1
-                        print(question)
          
     if scene == 0:
         # Check if the mouse click is in the trivia mini game button area
@@ -363,6 +369,22 @@ while not done:
     question_10 = small_font.render("Modems convert data into a format so that it can be transmitted", True, black)
     question_10_2 = small_font.render("from computer to computer.", True, black)
 
+    correct_msg = button_font.render("Correct!", True, light_green)
+    incorrect_msg = small_font.render("Incorrect.", True, red)
+    
+    incorrect_2_2 = small_font.render("1 byte = 8 bits", True, red)
+
+    incorrect_4_2 = small_font.render("The higher the dpi,", True, red)
+    incorrect_4_3 = small_font.render("the more information", True, red)
+    incorrect_4_4 = small_font.render("that can be displayed.", True, red)
+
+    incorrect_5_2 = small_font.render("Monitors and speakers", True, red)
+    incorrect_5_3 = small_font.render("are output devices.", True, red)
+
+    incorrect_9_2 = small_font.render("They would generate", True, red)
+    incorrect_9_3 = small_font.render("too much heat if", True, red)
+    incorrect_9_4 = small_font.render("they went faster.", True, red)
+
     # Copy images to screen
     if scene == 0:
         screen.fill(light_green)
@@ -375,6 +397,9 @@ while not done:
         screen.blit(true_button, [true_x, true_y])
         screen.blit(false_button, [false_x, false_y])
         screen.blit(speech_bubble, [175, 15])
+        if white_box_cover:
+                screen.blit(white_box, [200, 75])
+
     if scene == 3:
         screen.fill(grey)
         screen.blit(CPU_var, [180, 100])
@@ -454,39 +479,86 @@ while not done:
             screen.blit(q_number_1, [25, 523])
             screen.blit(question_1, [25, 553])
             screen.blit(question_1_2, [25, 570])
+            if true_selected:
+                screen.blit(correct_msg, [235, 90])
+            elif false_selected:
+                screen.blit(incorrect_msg, [235, 90])
+
         if question == 2:
             screen.blit(q_number_2, [25, 523])
             screen.blit(question_2, [25, 553])
+            if true_selected:
+                screen.blit(incorrect_msg, [220, 80])
+                screen.blit(incorrect_2_2, [220, 95])
+            elif false_selected:
+                screen.blit(correct_msg, [235, 90])
+            if white_box_cover:
+                screen.blit(white_box, [200, 75])
+
         if question == 3:
             screen.blit(q_number_3, [25, 523])
             screen.blit(question_3, [25, 553])
             screen.blit(question_3_2, [25, 570])
+            if true_selected:
+                screen.blit(correct_msg, [235, 90])
+            elif false_selected:
+                screen.blit(incorrect_msg, [235, 90])
+
         if question == 4:
             screen.blit(q_number_4, [25, 523])
             screen.blit(question_4, [25, 553])
             screen.blit(question_4_2, [25, 570])
+            if true_selected:
+                screen.blit(incorrect_msg, [210, 80])
+                screen.blit(incorrect_4_2, [210, 95])
+                screen.blit(incorrect_4_3, [210, 110])
+                screen.blit(incorrect_4_4, [210, 125])
+            elif false_selected:
+                screen.blit(correct_msg, [235, 90])
+
         if question == 5:
             screen.blit(q_number_5, [25, 523])
             screen.blit(question_5, [25, 553])
+
         if question == 6:
             screen.blit(q_number_6, [25, 523])
             screen.blit(question_6, [25, 553])
             screen.blit(question_6_2, [25, 570])
+            if true_selected:
+                screen.blit(correct_msg, [235, 90])
+            elif false_selected:
+                screen.blit(incorrect_msg, [235, 90])
+
         if question == 7:
             screen.blit(q_number_7, [25, 523])
             screen.blit(question_7, [25, 553])
+            if true_selected:
+                screen.blit(correct_msg, [235, 90])
+            elif false_selected:
+                screen.blit(incorrect_msg, [235, 90])
+
         if question == 8:
             screen.blit(q_number_8, [25, 523])
             screen.blit(question_8, [25, 553])
             screen.blit(question_8_2, [25, 570])
+            if true_selected:
+                screen.blit(correct_msg, [235, 90])
+            elif false_selected:
+                screen.blit(incorrect_msg, [235, 90])
+
         if question == 9:
             screen.blit(q_number_9, [25, 523])
             screen.blit(question_9, [25, 553])
             screen.blit(question_9_2, [25, 570])
+            
         if question == 10:
             screen.blit(q_number_10, [25, 523])
             screen.blit(question_10, [25, 553])
             screen.blit(question_10_2, [25, 570])
+            if true_selected:
+                screen.blit(correct_msg, [235, 90])
+            elif false_selected:
+                screen.blit(incorrect_msg, [235, 90])
 
     if scene == 3:
         screen.blit(instr_text_1, [110, 13])
