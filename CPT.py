@@ -22,7 +22,7 @@ off_white = (245, 245, 245)
 off_white_2 = (246, 246, 246)
 
 # Set the width and height of the screen [width, height]
-size = (800, 600)
+size = (800, 600)                                   
 screen = pygame.display.set_mode(size)
 
 pygame.display.set_caption("ICS2O1 CPT")
@@ -71,6 +71,7 @@ false_selected = False
 
 # Set other variables
 checklist_set = 1
+question = 0
 
 # Load and size images
 title = pygame.image.load("title.png").convert()
@@ -168,7 +169,7 @@ Numbers that control the different screens
 2 = Trivia Mini Game (lavender)
 3 = Shopping Mini Game (orange)
 """
- 
+
 # -------- Main Program Loop -----------
 while not done:
     # --- Main event loop
@@ -181,7 +182,13 @@ while not done:
             mouse_click_position = pygame.mouse.get_pos()
             cursor_x = mouse_click_position[0] - cursor_size[0]/2;
             cursor_y = mouse_click_position[1] - cursor_size[1]/2;
-
+        if scene == 2:
+            while question < 10:
+                if event.type == pygame.KEYUP:
+                    if event.key == pygame.K_RETURN:
+                        print("User pressed enter/return key for next question")
+                        question += 1
+        
     if scene == 0:
         # Check if the mouse click is in the trivia mini game button area
         if (trivia_x <= mouse_click_position[0] and mouse_click_position[0] <= trivia_x + button_length) and (trivia_y <= mouse_click_position[1] and mouse_click_position[1] <= trivia_y + button_width):
@@ -326,6 +333,17 @@ while not done:
     instr_text_2 = button_font.render("which items to click and put into the cart. You'll know you chose the correct item", True, black)
     instr_text_3 = button_font.render("when the red x turns into a checkmark. Once you get all 5 checkmarks, click on", True, black)
     instr_text_4 = button_font.render("the reset button to get the second checklist and repeat!", True, black)
+
+    question_1_txt = small_font.render("The sequence of events in the information processing cycle is input, processing, output, and storage.")
+    question_2_txt = small_font.render("1 byte = 10 bits")
+    question_3_txt = small_font.render("Megabytes and gigabytes are usually used to measure computer storage and memory.")
+    question_4_txt = small_font.render("The higher the dpi or ppi, the less information that can be captured or displayed.")
+    question_5_txt = small_font.render("Monitors, speakers, trackballs, and touchscreen are all input devices.")
+    question_6_txt = small_font.render("Computer worms are malware that destroy data and files on the computer. They also replicate themselves to spread.")
+    question_7_txt = small_font.render("The CPU is the brain of the computer.")
+    question_8_txt = small_font.render("Multimedia, design, and productivity are types of application software.")
+    question_9_txt = small_font.render("It's better to build faster single cores than multicore processors for the CPU.")
+    question_10_txt = small_font.render("Modems convert data into a format so that it can be transmitted from computer to computer.")
 
     # Copy images to screen
     if scene == 0:
