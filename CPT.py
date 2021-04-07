@@ -22,7 +22,7 @@ red = (212, 45, 19)
 off_white = (245, 245, 245)
 off_white_2 = (246, 246, 246)
 
-# Set the width and height of the screen [width, height]
+# Set the width and height of the screen 
 size = (800, 600)                                   
 screen = pygame.display.set_mode(size)
 
@@ -174,7 +174,7 @@ Numbers that control the different screens
 # -------- Main Program Loop -----------
 while not done:
     # --- Main event loop
-    for event in pygame.event.get(): # User did something
+    for event in pygame.event.get(): # User did something 
         if event.type == pygame.QUIT: # If user clicked close
             print("User asked to quit.")
             done = True # Flag that we are done so we exit this loop
@@ -188,8 +188,8 @@ while not done:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN:
                         question = question + 1
-                        
-    if scene == 0:
+
+    if scene == 0:        
         # Check if the mouse click is in the trivia mini game button area
         if (trivia_x <= mouse_click_position[0] and mouse_click_position[0] <= trivia_x + button_length) and (trivia_y <= mouse_click_position[1] and mouse_click_position[1] <= trivia_y + button_width):
             trivia_button_pressed = True
@@ -202,7 +202,7 @@ while not done:
             shop_button_pressed = False
         # Main menu buttons that switch screens
         if trivia_button_pressed:
-            print("Started trivia game.")
+            print("Started trivia game.") 
             scene = 2
         elif shop_button_pressed:
             print("Started shopping game.")
@@ -223,7 +223,7 @@ while not done:
         if (false_x <= mouse_click_position[0] and mouse_click_position[0] <= false_x + tf_length) and (false_y <= mouse_click_position[1] and mouse_click_position[1] <= false_y + tf_width):
             print("User pressed false button")
             false_selected = True
-    
+       
     if scene == 3:
         # Check if mouse click is on CPU icon
         if (180 <= mouse_click_position[0] and mouse_click_position[0] <= 180 + 80) and (100 <= mouse_click_position[1] and mouse_click_position[1] <= 100 + 90):
@@ -464,7 +464,7 @@ while not done:
         screen.blit(shopping_text_2, [shopping_x + 35, shopping_y + 40])
         screen.blit(trivia_text, [trivia_x + 8, trivia_y + 30])
 
-    if scene == 2:
+    if scene == 2:     
         if question == 1:
             screen.blit(q_number_1, [25, 523])
             screen.blit(question_1, [25, 553])
@@ -495,7 +495,7 @@ while not done:
                 screen.blit(correct_msg, [235, 90])
                 true_selected = False
             if false_selected:
-                screen.blit(incorrect_msg, [235, 90])
+                screen.blit(incorrect_msg, [235, 90])                            
                 false_selected = False
 
         if question == 4:
