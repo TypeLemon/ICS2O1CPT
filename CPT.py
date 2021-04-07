@@ -69,8 +69,6 @@ keyboard_selected = False
 hard_drive_selected = False
 true_selected = False
 false_selected = False
-show_correct = False
-show_incorrect = False
 white_box_cover = False
 # Loop until the user clicks the close button.
 done = False
@@ -149,8 +147,6 @@ grey_image = pygame.transform.scale(grey_rect, [800, 90])
 speech = pygame.image.load("bubble.jpg").convert()
 speech.set_colorkey(black)
 speech_bubble = pygame.transform.scale(speech, [190, 170])
-box = pygame.image.load("white_box.png").convert()
-white_box = pygame.transform.scale(box, [110, 55])
 
 # Set images to variables for mouse click
 CPU_var = CPU_image
@@ -191,7 +187,6 @@ while not done:
             if question < 10:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN:
-                        white_box_cover = True
                         question = question + 1
                         
     if scene == 0:
@@ -394,8 +389,6 @@ while not done:
         screen.blit(true_button, [true_x, true_y])
         screen.blit(false_button, [false_x, false_y])
         screen.blit(speech_bubble, [175, 15])
-        if white_box_cover:
-            screen.blit(white_box, [200, 75])
 
     if scene == 3:
         screen.fill(grey)
@@ -526,7 +519,6 @@ while not done:
             if true_selected:
                 screen.blit(incorrect_msg, [208, 77])
                 screen.blit(incorrect_5_2, [208, 95])
-                screen.blit(incorrect_5_3, [208, 110])
                 true_selected = False
             if false_selected:
                 screen.blit(correct_msg, [208, 90])
