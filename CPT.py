@@ -480,6 +480,11 @@ while not done:
     incorrect_9_4 = incorrect_font.render("they went faster.", True, red)
     congrats_msg = large_font.render("You completed all the questions!", True, grey)
     have = button_font.render("Have some memes", True, black)
+    triv_instr_1 = button_font.render("Welcome to the ICS2O1 gameshow! Based on the", True, black)
+    triv_instr_2 = button_font.render("questions shown below, select either True or", True, black)
+    triv_instr_3 = button_font.render("False. The host will tell you if your answer is", True, black)
+    triv_instr_4 = button_font.render("correct or not. Press the enter key to move", True, black)
+    triv_instr_5 = button_font.render("onto the next question!", True, black)
 
     # Copy images to screen
     if scene == 0:
@@ -523,7 +528,6 @@ while not done:
         screen.blit(x_mark_image, [583, 484])
         screen.blit(x_mark_image, [583, 511])
         screen.blit(x_mark_image, [670, 452])
-
         if reset_checklist:
             checklist_set = 2
         if checklist_set == 1:
@@ -578,6 +582,11 @@ while not done:
         screen.blit(trivia_text, [trivia_x + 8, trivia_y + 30])
 
     if scene == 2:    
+        screen.blit(triv_instr_1, [362, 18])
+        screen.blit(triv_instr_2, [370, 38])
+        screen.blit(triv_instr_3, [378, 58])
+        screen.blit(triv_instr_4, [385, 78])
+        screen.blit(triv_instr_5, [465, 98])
         if question == 1:
             screen.blit(q_number_1, [25, 523])
             screen.blit(question_1, [25, 553])
@@ -628,14 +637,14 @@ while not done:
 
         if question == 5:
             screen.blit(q_number_5, [25, 523])
-            screen.blit(question_5, [25, 553])
+            screen.blit(question_5, [23, 553])
             if true_selected:
                 screen.blit(incorrect_msg, [208, 77])
                 screen.blit(incorrect_5_2, [208, 95])
                 screen.blit(incorrect_5_3, [208, 110])
                 true_selected = False
             if false_selected:
-                screen.blit(correct_msg, [225, 90])
+                screen.blit(correct_msg, [230, 90])
                 false_selected = False
 
         if question == 6:
