@@ -198,6 +198,7 @@ while not done:
                         question = question + 1
                         true_selected = False
                         false_selected = False
+                        mouse_click_position = (-1, -1)
 
     if scene == 0:        
         # Check if the mouse click is in the trivia mini game button area
@@ -219,10 +220,9 @@ while not done:
             scene = 3  
 
     if scene == 1 or scene == 2 or scene == 3:
-        if (exit_x <= mouse_click_position[0] and mouse_click_position[0] <= exit_y + exit_length) and (exit_y <= mouse_click_position[1] and mouse_click_position[1] <= exit_y + exit_width):
+        if (exit_x <= mouse_click_position[0] and mouse_click_position[0] <= exit_x + exit_length) and (exit_y <= mouse_click_position[1] and mouse_click_position[1] <= exit_y + exit_width):
             print("User quit, go to main menu.")
             scene = 0                       
-            revert_checklist = True
     
     if scene == 2:
         # Check if mouse click is on true button
