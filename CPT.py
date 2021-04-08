@@ -150,7 +150,10 @@ speech.set_colorkey(black)
 speech_bubble = pygame.transform.scale(speech, [190, 170])
 congratulations = pygame.image.load("congratulations.png").convert()
 congratulations_box = pygame.transform.scale(congratulations, [380, 480])
-
+virus_image = pygame.image.load("virus.png").convert()
+virus_meme = pygame.transform.scale(virus_image, [255, 220])
+OS_image = pygame.image.load("OSmeme.png").convert()
+OS_meme = pygame.transform.scale(OS_image, [290, 220])
 
 # Set images to variables for mouse click
 CPU_var = CPU_image
@@ -193,6 +196,8 @@ while not done:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN:
                         question = question + 1
+                        true_selected = False
+                        false_selected = False
 
     if scene == 0:        
         # Check if the mouse click is in the trivia mini game button area
@@ -211,9 +216,9 @@ while not done:
             scene = 2
         elif shop_button_pressed:
             print("Started shopping game.")
-            scene = 3         
+            scene = 3  
 
-    if scene == 2 or scene == 3:
+    if scene == 1 or scene == 2 or scene == 3:
         if (exit_x <= mouse_click_position[0] and mouse_click_position[0] <= exit_y + exit_length) and (exit_y <= mouse_click_position[1] and mouse_click_position[1] <= exit_y + exit_width):
             print("User quit, go to main menu.")
             scene = 0                       
@@ -405,10 +410,11 @@ while not done:
             RAM_selected = False
             motherboard_selected = False
             antivirus_selected = False
-            CPU_selected = False
-    
+            CPU_selected = False  
+
     # Render font and text
     button_font = pygame.font.SysFont("Oswald", 25, False, False)
+    large_font = pygame.font.SysFont("Oswald", 30, False, False)
     small_font = pygame.font.SysFont("Alegreya", 23, False, False)
     incorrect_font = pygame.font.SysFont("Oswald", 20, False, False)
 
@@ -472,18 +478,21 @@ while not done:
     incorrect_9_2 = incorrect_font.render("They would generate", True, red)
     incorrect_9_3 = incorrect_font.render("too much heat if", True, red)
     incorrect_9_4 = incorrect_font.render("they went faster.", True, red)
-    congrats_msg = button_font.render("You completed all the questions!", True, grey)
+    congrats_msg = large_font.render("You completed all the questions!", True, grey)
+    have = button_font.render("Have some memes", True, black)
 
     # Copy images to screen
     if scene == 0:
         screen.fill(light_green)
         screen.blit(title_image, [70, 50])
         screen.blit(typing_image, [170, 280])
-        screen.blit(brain_image, [460, 280])
+        screen.blit(brain_image, [455, 280])
     
     if scene == 1:
         screen.fill(yellow)
-        screen.blit(congratulations_box, [60, 60])
+        screen.blit(congratulations_box, [60, 75])
+        screen.blit(virus_meme, [500, 100])
+        screen.blit(OS_meme, [480, 350])
 
     if scene == 2:
         screen.blit(gameshow_back, [0, 0])
@@ -556,9 +565,9 @@ while not done:
         pygame.draw.rect(screen, lavender, [trivia_x, trivia_y, button_length, button_width])
     
     if scene == 1:
-        pygame.draw.rect(screen, white, [130, 415, 260, 20])
+        pygame.draw.rect(screen, white, [124, 425, 260, 100])
 
-    if scene == 2 or scene == 3:
+    if scene == 1 or scene == 2 or scene == 3:
         pygame.draw.rect(screen, coral, [exit_x, exit_y, exit_length, exit_width])
         screen.blit(exit_image, [exit_x, exit_y + 5])
     
@@ -568,7 +577,7 @@ while not done:
         screen.blit(shopping_text_2, [shopping_x + 35, shopping_y + 40])
         screen.blit(trivia_text, [trivia_x + 8, trivia_y + 30])
 
-    if scene == 2:     
+    if scene == 2:    
         if question == 1:
             screen.blit(q_number_1, [25, 523])
             screen.blit(question_1, [25, 553])
@@ -623,9 +632,10 @@ while not done:
             if true_selected:
                 screen.blit(incorrect_msg, [208, 77])
                 screen.blit(incorrect_5_2, [208, 95])
+                screen.blit(incorrect_5_3, [208, 110])
                 true_selected = False
             if false_selected:
-                screen.blit(correct_msg, [208, 90])
+                screen.blit(correct_msg, [225, 90])
                 false_selected = False
 
         if question == 6:
@@ -689,7 +699,8 @@ while not done:
             scene = 1
         
     if scene == 1:
-        screen.blit(congrats_msg, [127, 415])
+        screen.blit(congrats_msg, [95, 435])
+        screen.blit(have, [550, 70])
 
     if scene == 3:
         screen.blit(instr_text_1, [110, 13])
