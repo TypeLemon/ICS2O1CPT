@@ -21,6 +21,7 @@ grey = (211, 211, 211)
 red = (212, 45, 19)
 off_white = (245, 245, 245)
 off_white_2 = (246, 246, 246)
+yellow = (249, 212, 89)
 
 # Set the width and height of the screen 
 size = (800, 600)                                   
@@ -147,6 +148,9 @@ grey_image = pygame.transform.scale(grey_rect, [800, 90])
 speech = pygame.image.load("bubble.jpg").convert()
 speech.set_colorkey(black)
 speech_bubble = pygame.transform.scale(speech, [190, 170])
+congratulations = pygame.image.load("congratulations.png").convert()
+congratulations_box = pygame.transform.scale(congratulations, [380, 480])
+
 
 # Set images to variables for mouse click
 CPU_var = CPU_image
@@ -185,7 +189,7 @@ while not done:
             cursor_x = mouse_click_position[0] - cursor_size[0]/2;
             cursor_y = mouse_click_position[1] - cursor_size[1]/2;
         if scene == 2:
-            if question < 10:
+            if question < 11:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN:
                         question = question + 1
@@ -224,7 +228,7 @@ while not done:
         if (false_x <= mouse_click_position[0] and mouse_click_position[0] <= false_x + tf_length) and (false_y <= mouse_click_position[1] and mouse_click_position[1] <= false_y + tf_width):
             print("User pressed false button")
             false_selected = True
-       
+
     if scene == 3:
         # Check if mouse click is on CPU icon
         if (180 <= mouse_click_position[0] and mouse_click_position[0] <= 180 + 80) and (100 <= mouse_click_position[1] and mouse_click_position[1] <= 100 + 90):
@@ -468,6 +472,7 @@ while not done:
     incorrect_9_2 = incorrect_font.render("They would generate", True, red)
     incorrect_9_3 = incorrect_font.render("too much heat if", True, red)
     incorrect_9_4 = incorrect_font.render("they went faster.", True, red)
+    congrats_msg = button_font.render("You completed all the questions!", True, grey)
 
     # Copy images to screen
     if scene == 0:
@@ -475,6 +480,10 @@ while not done:
         screen.blit(title_image, [70, 50])
         screen.blit(typing_image, [170, 280])
         screen.blit(brain_image, [460, 280])
+    
+    if scene == 1:
+        screen.fill(yellow)
+        screen.blit(congratulations_box, [60, 60])
 
     if scene == 2:
         screen.blit(gameshow_back, [0, 0])
@@ -545,12 +554,15 @@ while not done:
     if scene == 0:
         pygame.draw.rect(screen, orange, [shopping_x, shopping_y, button_length, button_width])
         pygame.draw.rect(screen, lavender, [trivia_x, trivia_y, button_length, button_width])
+    
+    if scene == 1:
+        pygame.draw.rect(screen, white, [130, 415, 260, 20])
 
     if scene == 2 or scene == 3:
         pygame.draw.rect(screen, coral, [exit_x, exit_y, exit_length, exit_width])
         screen.blit(exit_image, [exit_x, exit_y + 5])
     
-    # --- Copy text to screen
+    # --- Text code
     if scene == 0:
         screen.blit(shopping_text_1, [shopping_x + 40, shopping_y + 20])
         screen.blit(shopping_text_2, [shopping_x + 35, shopping_y + 40])
@@ -672,6 +684,12 @@ while not done:
             if false_selected:
                 screen.blit(incorrect_msg, [235, 90])
                 false_selected = False
+
+        if question == 11:
+            scene = 1
+        
+    if scene == 1:
+        screen.blit(congrats_msg, [127, 415])
 
     if scene == 3:
         screen.blit(instr_text_1, [110, 13])
