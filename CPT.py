@@ -167,6 +167,7 @@ clock = pygame.time.Clock()
 """
 Numbers that control the different screens
 0 = Main Menu
+1 = Completed Trivia Game Congratulations
 2 = Trivia Mini Game (lavender)
 3 = Shopping Mini Game (orange)
 """
@@ -231,60 +232,150 @@ while not done:
             CPU_var = trans_box
             cursor = CPU_image
             CPU_selected = True
+            antivirus_var = antivirus_image
+            motherboard_var = motherboard_image
+            RAM_var = RAM_image
+            graphics_var = graphics_image
+            keyboard_var = keyboard_image
+            hard_drive_var = hard_drive_image
+            supply_var = power_supply_image
+            monitor_var = monitor_image
+            mouse_var = mouse_image
         # Check if mouse click is on antivirus icon
         if (280 <= mouse_click_position[0] and mouse_click_position[0] <= 280 + 90) and (100 <= mouse_click_position[1] and mouse_click_position[1] <= 100 + 100):
             print("Antivirus selected")
             antivirus_var = trans_box
             cursor = antivirus_image
             antivirus_selected = True
+            CPU_var = CPU_image
+            motherboard_var = motherboard_image
+            RAM_var = RAM_image
+            graphics_var = graphics_image
+            keyboard_var = keyboard_image
+            hard_drive_var = hard_drive_image
+            supply_var = power_supply_image
+            monitor_var = monitor_image
+            mouse_var = mouse_image
         # Check if mouse click is on motherboard icon
         if (370 <= mouse_click_position[0] and mouse_click_position[0] <= 370 + 100) and (100 <= mouse_click_position[1] and mouse_click_position[1] <= 100 + 90):
             print("Motherboard selected")
             motherboard_var = trans_box
             cursor = motherboard_image
             motherboard_selected = True
+            CPU_var = CPU_image
+            antivirus_var = antivirus_image
+            RAM_var = RAM_image
+            graphics_var = graphics_image
+            keyboard_var = keyboard_image
+            hard_drive_var = hard_drive_image
+            supply_var = power_supply_image
+            monitor_var = monitor_image
+            mouse_var = mouse_image
         # Check if mouse click is on the RAM icon
         if (470 <= mouse_click_position[0] and mouse_click_position[0] <= 470 + 110) and (100 <= mouse_click_position[1] and mouse_click_position[1] <= 100 + 100):
             print("RAM selected")
             RAM_var = trans_box
             cursor = RAM_image
             RAM_selected = True 
+            CPU_var = CPU_image
+            antivirus_var = antivirus_image
+            motherboard_var = motherboard_image
+            graphics_var = graphics_image
+            keyboard_var = keyboard_image
+            hard_drive_var = hard_drive_image
+            supply_var = power_supply_image
+            monitor_var = monitor_image
+            mouse_var = mouse_image
         # Check if mouse click is on the graphics card icon
         if (580 <= mouse_click_position[0] and mouse_click_position[0] <= 580 + 110) and (105 <= mouse_click_position[1] and mouse_click_position[1] <= 105 + 90):
             print("Graphics card selected")
             graphics_var = trans_box
             cursor = graphics_image
             graphics_card_selected = True
+            CPU_var = CPU_image
+            antivirus_var = antivirus_image
+            motherboard_var = motherboard_image
+            RAM_var = RAM_image
+            keyboard_var = keyboard_image
+            hard_drive_var = hard_drive_image
+            supply_var = power_supply_image
+            monitor_var = monitor_image
+            mouse_var = mouse_image
         # Check if mouse click is on the keyboard icon
         if (95 <= mouse_click_position[0] and mouse_click_position[0] <= 95 + 120) and (240 <= mouse_click_position[1] and mouse_click_position[1] <= 240 + 80):
             print("Keyboard selected")
             keyboard_var = trans_box
             cursor = keyboard_image
             keyboard_selected = True
+            CPU_var = CPU_image
+            antivirus_var = antivirus_image
+            motherboard_var = motherboard_image
+            RAM_var = RAM_image
+            graphics_var = graphics_image
+            hard_drive_var = hard_drive_image
+            supply_var = power_supply_image
+            monitor_var = monitor_image
+            mouse_var = mouse_image
         # Check if mouse click is on the hard drive icon
         if (230 <= mouse_click_position[0] and mouse_click_position[0] <= 230 + 100) and (235 <= mouse_click_position[1] and mouse_click_position[1] <= 235 + 100):
             print("Hard drive selected")
             hard_drive_var = trans_box
             cursor = hard_drive_image
             hard_drive_selected = True
+            CPU_var = CPU_image
+            antivirus_var = antivirus_image
+            motherboard_var = motherboard_image
+            RAM_var = RAM_image
+            graphics_var = graphics_image
+            keyboard_var = keyboard_image
+            supply_var = power_supply_image
+            monitor_var = monitor_image
+            mouse_var = mouse_image
         # Check if mouse click is on the power supply icon
         if (340 <= mouse_click_position[0] and mouse_click_position[0] <= 340 + 110) and (235 <= mouse_click_position[1] and mouse_click_position[1] <= 235 + 100):
             print("Power supply selected")
             supply_var = trans_box
             cursor = power_supply_image
             power_supply_selected = True
+            CPU_var = CPU_image
+            antivirus_var = antivirus_image
+            motherboard_var = motherboard_image
+            RAM_var = RAM_image
+            graphics_var = graphics_image
+            keyboard_var = keyboard_image
+            hard_drive_var = hard_drive_image
+            monitor_var = monitor_image
+            mouse_var = mouse_image
         # Check if mouse click is on the monitor icon
         if (480 <= mouse_click_position[0] and mouse_click_position[0] <= 480 + 110) and (235 <= mouse_click_position[1] and mouse_click_position[1] <= 235 + 90):
             print("Monitor selected")
             monitor_var = trans_box
             cursor = monitor_image
             monitor_selected = True
+            CPU_var = CPU_image
+            antivirus_var = antivirus_image
+            motherboard_var = motherboard_image
+            RAM_var = RAM_image
+            graphics_var = graphics_image
+            keyboard_var = keyboard_image
+            hard_drive_var = hard_drive_image
+            supply_var = power_supply_image
+            mouse_var = mouse_image
         # Check if mouse click is on the mouse icon
         if (620 <= mouse_click_position[0] and mouse_click_position[0] <= 620 + 70) and (230 <= mouse_click_position[1] and mouse_click_position[1] <= 230 + 90):
             print("Mouse selected")
             mouse_var = trans_box
             cursor = mouse_image
             mouse_selected = True
+            CPU_var = CPU_image
+            antivirus_var = antivirus_image
+            motherboard_var = motherboard_image
+            RAM_var = RAM_image
+            graphics_var = graphics_image
+            keyboard_var = keyboard_image
+            hard_drive_var = hard_drive_image
+            supply_var = power_supply_image
+            monitor_var = monitor_image
         # Check if mouse click is on the reset button
         if (10 <= mouse_click_position[0] and mouse_click_position[0] <= 10 + 90) and (500 <= mouse_click_position[1] and mouse_click_position[1] <= 500 + 90):
             print("User chose to switch to checklist 2")
@@ -301,18 +392,27 @@ while not done:
             CPU_var = CPU_image
             reset_checklist = True
             checklist_set = 2     
+            mouse_selected = False
+            monitor_selected = False
+            power_supply_selected = False
+            hard_drive_selected = False
+            keyboard_selected = False
+            graphics_card_selected = False
+            RAM_selected = False
+            motherboard_selected = False
+            antivirus_selected = False
+            CPU_selected = False
     
     # Render font and text
     button_font = pygame.font.SysFont("Oswald", 25, False, False)
     small_font = pygame.font.SysFont("Alegreya", 23, False, False)
     incorrect_font = pygame.font.SysFont("Oswald", 20, False, False)
-    
+
     trivia_text = button_font.render("Trivia Mini-Game", True, white) 
     shopping_text_1 = button_font.render("Shopping", True, white)
     shopping_text_2 = button_font.render("Mini-Game", True, white)
     checklist_text_1 = button_font.render("Checklist 1", True, black)
     checklist_text_2 = button_font.render("Checklist 2", True, black)
-
     CPU_text = small_font.render("CPU", True, black)
     mouse_text = small_font.render("Mouse", True, black)
     monitor_text = small_font.render("Monitor", True, black)
@@ -329,7 +429,6 @@ while not done:
     instr_text_2 = button_font.render("which items to click and put into the cart. You'll know you chose the correct item", True, black)
     instr_text_3 = button_font.render("when the red x turns into a checkmark. Once you get all 5 checkmarks, click on", True, black)
     instr_text_4 = button_font.render("the reset button to get the second checklist and repeat!", True, black)
-
     q_number_1 = button_font.render("Question 1", True, salmon)
     q_number_2 = button_font.render("Question 2", True, salmon)
     q_number_3 = button_font.render("Question 3", True, salmon)
@@ -340,7 +439,6 @@ while not done:
     q_number_8 = button_font.render("Question 8", True, salmon)
     q_number_9 = button_font.render("Question 9", True, salmon)
     q_number_10 = button_font.render("Question 10", True, salmon)
-
     question_1 = small_font.render("The sequence of events in the information processing cycle is", True, black)
     question_1_2 = small_font.render("input, processing, output, and storage.", True, black)
     question_2 = small_font.render("1 byte = 10 bits", True, black)
@@ -358,20 +456,15 @@ while not done:
     question_9_2 = small_font.render("for the CPU.", True, black)
     question_10 = small_font.render("Modems convert data into a format so that it can be transmitted", True, black)
     question_10_2 = small_font.render("from computer to computer.", True, black)
-
     correct_msg = button_font.render("Correct!", True, light_green)
     incorrect_msg = small_font.render("Incorrect.", True, red)
-    
     incorrect_2_2 = small_font.render("1 byte = 8 bits", True, red)
-
     incorrect_4_2 = incorrect_font.render("The higher the dpi,", True, red)
     incorrect_4_3 = incorrect_font.render("the more information", True, red)
     incorrect_4_4 = incorrect_font.render("that can be", True, red)
     incorrect_4_5 = incorrect_font.render("displayed.", True, red)
-
     incorrect_5_2 = incorrect_font.render("Monitors and speakers", True, red)
     incorrect_5_3 = incorrect_font.render("are output devices.", True, red)
-
     incorrect_9_2 = incorrect_font.render("They would generate", True, red)
     incorrect_9_3 = incorrect_font.render("too much heat if", True, red)
     incorrect_9_4 = incorrect_font.render("they went faster.", True, red)
@@ -415,7 +508,6 @@ while not done:
 
         if reset_checklist:
             checklist_set = 2
-
         if checklist_set == 1:
             if CPU_selected:
                 screen.blit(sticky_box_image, [583, 430])
