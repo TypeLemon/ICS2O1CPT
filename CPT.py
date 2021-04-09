@@ -60,7 +60,6 @@ button_pressed = False
 CPU_selected = False 
 mouse_selected = False
 monitor_selected = False
-reset_checklist = False 
 power_supply_selected = False
 antivirus_selected = False
 motherboard_selected = False
@@ -399,7 +398,6 @@ while not done:
             monitor_var = monitor_image
             mouse_var = mouse_image
             CPU_var = CPU_image
-            reset_checklist = True
             checklist_set = 2     
             mouse_selected = False
             monitor_selected = False
@@ -528,8 +526,7 @@ while not done:
         screen.blit(x_mark_image, [583, 484])
         screen.blit(x_mark_image, [583, 511])
         screen.blit(x_mark_image, [670, 452])
-        if reset_checklist:
-            checklist_set = 2
+    
         if checklist_set == 1:
             if CPU_selected:
                 screen.blit(sticky_box_image, [583, 430])
